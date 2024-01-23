@@ -1,0 +1,7 @@
+.icons {
+  display: flex;
+  align-items: center;
+  column-gap: 48px;
+
+  margin-top: 18px;
+}

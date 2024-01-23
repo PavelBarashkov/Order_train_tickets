@@ -2,6 +2,7 @@ import "./App.css"
 import { BrowserRouter } from "react-router-dom"
 import { AppRouter } from "./pages/helpers/components/AppRouter"
 import { Header } from "./modules/Header"
+import { Footer } from "./modules/Footer"
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <main className="content">
           <AppRouter />
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   )
