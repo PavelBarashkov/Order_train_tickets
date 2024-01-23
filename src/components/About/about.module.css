@@ -1,0 +1,38 @@
+.section {
+    margin-top: 145px;
+    margin-bottom: 125px;
+}
+
+.title {
+    margin-bottom: 30px;
+
+    font-size: 36px;
+    font-weight: 500;
+}
+
+.text {
+    position: relative;
+    max-width: 1320px;
+
+    padding-left: 28px;
+
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28.13px;
+}
+
+.text p {
+    margin-bottom: 26px;
+}
+
+
+
+.text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 9px;
+    height: 231px;
+    background: rgba(255, 168, 0, 1);
+}
