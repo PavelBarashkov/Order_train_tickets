@@ -6,10 +6,5 @@ interface HeaderCustomProps {
 }
 
 export const HeaderCustom = ({ children }: HeaderCustomProps) => {
-  return (
-    <>
-      <header className={classes.header}> {children} </header>
-      <div className={classes.t}></div>
-    </>
-  )
+  return <header className={classes.header}> {children} </header>
 }
