@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 106px;
+  flex-wrap: wrap;
+  column-gap: 80px;
 
   width: 100%;
 
