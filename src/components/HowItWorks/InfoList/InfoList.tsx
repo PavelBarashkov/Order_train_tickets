@@ -10,7 +10,7 @@ export interface IItem {
 }
 
 export const InfoList = () => {
-  const data = [
+  const data: IItem[] = [
     {
       img: img1,
       text: `Удобный заказ на сайте`,
