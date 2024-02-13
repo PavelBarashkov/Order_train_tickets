@@ -1,16 +1,19 @@
-import { Container } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import { Title } from "../Title/Title"
 import classes from "./mainInfo.module.css"
+import { Form } from "../Form/Form"
 
 export const MainInfo = () => {
   return (
-    <div className={classes.MainInfo}>
-      <Container style={{ maxWidth: 1480 }}>
-        <div className={classes.containerInfo}>
+    <Container style={{ maxWidth: 1480, marginTop: 253 }}>
+      <Row xs={1} sb={1} xxl={2} className="align-items-center">
+        <Col>
           <Title />
-          <form className={classes.form} action=""></form>
-        </div>
-      </Container>
-    </div>
+        </Col>
+        <Col>
+          <Form />
+        </Col>
+      </Row>
+    </Container>
   )
 }

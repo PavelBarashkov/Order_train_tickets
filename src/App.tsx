@@ -4,6 +4,8 @@ import { AppRouter } from "./pages/helpers/components/AppRouter"
 import { Header } from "./modules/Header"
 import { Footer } from "./modules/Footer"
 
+import "primereact/resources/themes/lara-light-cyan/theme.css"
+
 const App = () => {
   return (
     <BrowserRouter>
