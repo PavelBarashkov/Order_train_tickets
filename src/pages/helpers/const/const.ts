@@ -1,4 +1,7 @@
 export const MAIN_ROUTE = "/"
-export const CHOICE_TRAIN_ROUTE = "/choice/train"
-export const CHOICE_TICKET_ROUTE = "/choice/ticket"
-export const PAYMENT_TICKET_ROUTE = '/payment/ticket'
+export const TICKETS_ROUTE = "order/tickets"
+export const TRAIN_INFO_ROUTER = "order/tickets/train"
+export const PASSENGERS_ROUTER = "order/tickets/passengers"
+export const PAYMENT_ORDER_ROUTE = "order/tickets/payment"
+export const CONFIRMATION_ORDER_ROUTE = "order/tickets/payment/сonfirmation"
+export const SUCCESS_ORDER_ROUTE = "order/tickets/payment/success"
