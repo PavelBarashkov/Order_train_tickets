@@ -6,4 +6,11 @@
   position: relative;
 }
 
+.headerSub {
+  background: url(./assets/intrioSub.png), rgba(146, 143, 148, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
 
