@@ -1,0 +1,18 @@
+.date_filter__fieldset {
+  margin-bottom: 33px;
+  position: relative;
+}
+
+.date-filter__fieldset::after {
+  content: "";
+  position: absolute;
+  width: 364px;
+  height: 0;
+  border: 1px solid #e5e5e5;
+  right: -38px;
+  bottom: -33px;
+}
+
+.date_filter__control {
+  margin-bottom: 26px;
+}
