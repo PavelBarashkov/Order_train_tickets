@@ -1,8 +1,8 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { FilterDirection } from '../modules/FilterDirection/FilterDirection'
+import { FilterDirection } from '../../../modules/FilterDirection/FilterDirection'
 
-export const OrderTickets = () => {
+export const TicketPage = () => {
   return (
     <Container>
       <Row>
