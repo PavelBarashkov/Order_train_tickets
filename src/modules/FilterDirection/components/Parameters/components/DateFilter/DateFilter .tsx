@@ -3,7 +3,7 @@ import classes from "./dataFilter.module.css"
 import DatePicker from "react-datepicker"
 import ru from "date-fns/locale/ru"
 import "react-datepicker/dist/react-datepicker.css"
-import { MyInput } from "../../../../../../UI/MyInput/MyInput"
+import { MyInput } from "../../../../../../components/UI/MyInput/MyInput"
 
 export const DateFilter = () => {
   const [startDate, setStartDate] = useState(undefined)

@@ -1,0 +1,15 @@
+.header {
+  background: url(../../assets/header/intro.png), rgba(146, 143, 148, 1);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mainPage {
+  background: url(../../assets//header/introMainPage.png), rgba(155, 105, 9, 1);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.headerMainSection {
+  margin-top: 253px;
+}

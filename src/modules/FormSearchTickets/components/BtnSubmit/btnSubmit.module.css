@@ -1,0 +1,24 @@
+.btn {
+    width: 325px;
+
+    padding: 17px 5px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: rgba(41, 41, 41, 1);
+    background-color: rgba(255, 168, 0, 1);
+
+    border: 1px solid rgba(255, 168, 0, 1);
+    border-radius: 5px;
+}
+
+.btn:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+    background-color: inherit;
+    
+    color: rgba(255, 168, 0, 1);
+}

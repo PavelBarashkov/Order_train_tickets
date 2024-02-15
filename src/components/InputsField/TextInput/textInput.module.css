@@ -1,0 +1,10 @@
+.inputLabel {
+    font-size: 30px;
+    font-weight: 200;
+
+    color: rgba(255, 255, 255, 1);
+}
+
+.error {
+    color: red;
+}

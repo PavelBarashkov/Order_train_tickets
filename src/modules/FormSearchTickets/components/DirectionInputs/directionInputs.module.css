@@ -1,0 +1,32 @@
+.inputs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  column-gap: 8px;
+}
+
+.inputs img {
+  margin-top: 45px;
+  align-self: center;
+
+  cursor: pointer;
+}
+
+.inputs div {
+  width: 325px;
+}
+
+.input {
+  position: relative;
+}
+
+.input span {
+  position: absolute;
+  right: 15px;
+  bottom: 13px;
+
+  width: 21px;
+  height: 30px;
+
+  background: url(../../../../assets/icons/location.png);
+}

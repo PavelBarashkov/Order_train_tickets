@@ -1,18 +1,16 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { FilterDirection } from '../../../modules/FilterDirection/FilterDirection'
+import type React from "react"
+import { Header } from "../../../layouts"
+import { Logo, NavBar } from "@components"
+import { FormSearchTickets } from "@modules"
 
-export const TicketPage = () => {
+export const TicketPage: React.FC = () => {
   return (
-    <Container>
-      <Row>
-        <Col style={{maxWidth: 364}}>
-        <FilterDirection/>
-        </Col>
-        <Col>
-          тут будут билеты
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Header
+        logo={<Logo logo="Лого" />}
+        navBar={<NavBar />}
+        form={<FormSearchTickets isMain={false} />}
+      />
+    </>
   )
 }

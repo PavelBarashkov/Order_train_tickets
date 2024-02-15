@@ -1,21 +1,12 @@
-import "./App.css"
+import type React from "react"
 import { BrowserRouter } from "react-router-dom"
 import { AppRouter } from "./pages/helpers/components/AppRouter"
-import { Header } from "./modules/Header"
-import { Footer } from "./modules/Footer"
+import "./App.css"
 
-import "primereact/resources/themes/lara-light-cyan/theme.css"
-
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className="app_container w-100 h-100">
-        <Header />
-        <main className="content">
-          <AppRouter />
-        </main>
-        <Footer />
-      </div>
+      <AppRouter />
     </BrowserRouter>
   )
 }

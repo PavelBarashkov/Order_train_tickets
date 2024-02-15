@@ -1,0 +1,28 @@
+.formik {
+    padding: 79px 24px 52px 24px;
+
+    background-color: rgba(41, 41, 41, 0.8) !important;
+}
+
+
+.inputGroupMainPage {
+    display: flex;
+    flex-direction: column;
+    row-gap: 61px;
+}
+
+.inputGroupMainPageBtn {
+    align-self: flex-end;
+}
+
+.inputGroup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputGroupBtn {
+    display: flex;
+    justify-content: end;
+
+    margin-top: 47px;
+}

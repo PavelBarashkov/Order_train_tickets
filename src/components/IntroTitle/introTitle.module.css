@@ -1,0 +1,11 @@
+.title {
+  font-size: 72px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 1);
+
+  line-height: 84.38px;
+}
+
+.title span {
+  font-weight: 100;
+}
