@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 
-export const PassengerPage = () => {
+export const PassengerPage: React.FC = () => {
   return (
     <div>PassengerPage</div>
   )

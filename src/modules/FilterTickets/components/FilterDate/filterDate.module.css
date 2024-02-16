@@ -1,0 +1,28 @@
+.filterDateInputs {
+  padding: 0px 36px 27px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 26px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+
+.filterDateInput {
+  position: relative;
+}
+
+.filterDateInputLabel {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.filterDateInput span {
+  position: absolute;
+  right: 20px;
+  bottom: 11px;
+
+  width: 30px;
+  height: 34px;
+
+  background: url("@assets/icons/calendar.png");
+}

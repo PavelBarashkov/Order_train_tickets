@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 
-export const ConfirmationPage = () => {
+export const ConfirmationPage: React.FC = () => {
   return (
     <div>ConfirmationPage</div>
   )

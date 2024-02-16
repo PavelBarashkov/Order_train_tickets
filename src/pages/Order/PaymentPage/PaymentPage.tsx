@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 
-export const PaymentPage = () => {
+export const PaymentPage: React.FC = () => {
   return (
     <div>PaymentPage</div>
   )

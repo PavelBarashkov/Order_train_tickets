@@ -7,4 +7,8 @@ export interface InputProps {
     multiple?: boolean
     value?: string
     id?: string
+    max?: number
+    min?: number
+    step?: number
+    typeInput?: string
 } 

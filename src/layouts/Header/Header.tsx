@@ -9,7 +9,7 @@ interface IHeaderProps {
   logo: React.ReactNode
   title?: React.ReactNode
   form?: React.ReactNode
-  stageBard?: React.ReactNode
+  stageBar?: React.ReactNode
 }
 
 export const Header: React.FC<IHeaderProps> = ({
@@ -17,7 +17,7 @@ export const Header: React.FC<IHeaderProps> = ({
   logo,
   title,
   form,
-  stageBard,
+  stageBar,
 }) => {
   const location = useLocation()
   const isMain = location.pathname === MAIN_ROUTE
@@ -45,7 +45,7 @@ export const Header: React.FC<IHeaderProps> = ({
       {navBar}
       <div className={classes.headerMainSection}>
         <Container style={{ maxWidth: 1490 }}>{form}</Container>
-        {stageBard}
+        {stageBar}
       </div>
     </header>
   )
