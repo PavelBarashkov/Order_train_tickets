@@ -5,7 +5,7 @@ import { Footer } from "@components"
 export const LayoutMainApp: React.FC = () => {
   return (
     <div className="app_container w-100 h-100">
-      <main>
+      <main className="main">
           <Outlet />
       </main>
       <Footer />

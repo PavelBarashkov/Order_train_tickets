@@ -1,0 +1,39 @@
+.trainInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 17px;
+  
+    padding: 41px 0px 21px 0px;
+  }
+  
+  .trainInfoNumber {
+    font-size: 24px;
+    font-weight: 700;
+  
+    color: rgba(62, 60, 65, 1);
+  }
+  
+  .trainInfoDirection {
+    font-size: 16px;
+    font-weight: 400;
+  
+    color: rgba(0, 0, 0, 1);
+  }
+  
+  .trainInfoDirection p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .trainInfoDirectionItemCity {
+    display: flex;
+    align-items: center;
+  
+    column-gap: 10px;
+  }
+  
+  .trainInfoDirectionFromCity {
+    color: rgba(146, 143, 148, 1);
+  }
+  

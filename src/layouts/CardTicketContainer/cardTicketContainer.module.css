@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  align-items: start;
+
+  width: 100%;
+  /* padding: 41px 21px 21px 21px; */
+
+  border: 1px solid rgba(196, 196, 196, 1);
+
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.cardTrainInfo {
+  width: 20.54%;
+
+  background-color: rgba(228, 224, 233, 1) !important;
+}
+
+.cardDirectionInfo {
+  width: 49.95%;
+}
+
+.cardPriceInfo {
+  width: 29.51%;
+
+  border-right: 1px dotted rgba(229, 229, 229, 1);
+}
