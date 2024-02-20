@@ -32,7 +32,7 @@ export const publicRoutes: Path[] = [
     element: <TicketPage />,
   },
   {
-    path: TRAIN_INFO_ROUTER + "/:id",
+    path: TRAIN_INFO_ROUTER,
     element: <TrainInfoPage />,
   },
   {

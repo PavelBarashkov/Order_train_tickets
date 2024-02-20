@@ -7,11 +7,8 @@ import { Pagination } from "../../../Pagination/Pagination"
 export const CardTicketList: React.FC = () => {
   return (
     <Row className="g-5">
-        <Col>
-           <ListManagement/>
-        </Col>
       <Col>
-        <CardTicket />
+        <ListManagement />
       </Col>
       <Col>
         <CardTicket />
@@ -19,7 +16,10 @@ export const CardTicketList: React.FC = () => {
       <Col>
         <CardTicket />
       </Col>
-        <Pagination/>
+      <Col>
+        <CardTicket />
+      </Col>
+      <Pagination />
       
     </Row>
   )

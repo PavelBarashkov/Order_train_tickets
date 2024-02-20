@@ -1,4 +1,5 @@
 import { FormSearchTickets } from "./FormSearchTickets"
 import { FilterTickets } from "./FilterTickets"
+import { TicketInfo } from "./TicketInfo"
 
-export { FormSearchTickets, FilterTickets }
+export { FormSearchTickets, FilterTickets, TicketInfo }

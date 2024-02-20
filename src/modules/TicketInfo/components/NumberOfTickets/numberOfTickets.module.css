@@ -1,0 +1,31 @@
+.numberOfTickets {
+  margin-top: 40px;
+  padding-bottom: 49px;
+
+  border-bottom: 1px dotted rgba(196, 196, 196, 1);
+}
+
+.numberOfTicketsTitle {
+  padding-left: 19px;
+  padding-bottom: 19px;
+  margin: 0;
+}
+
+.numberOfTicketsInfo {
+    padding: 0px 35px;
+}
+
+.numberOfTicketsCount {
+    padding: 15px 17px;
+
+    font-size: 18px;
+
+    border: 1px solid rgba(146, 143, 148, 1);
+    border-radius: 5px;
+
+    margin-bottom: 23px;
+}
+
+.discount {
+    color: rgba(146, 143, 148, 1);
+}

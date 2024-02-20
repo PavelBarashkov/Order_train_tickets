@@ -1,0 +1,36 @@
+.header {
+  margin-top: 33px;
+  padding: 0px 34px;
+
+  background-color: rgba(255, 168, 0, 0.44);
+}
+.header a {
+  padding: 0;
+}
+
+.headerNav {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerCoachList {
+  display: flex;
+  column-gap: 10px;
+  align-items: end;
+}
+
+.active {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: rgba(255, 255, 255, 1);
+}
+
+
+.inActive {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: rgba(41, 41, 41, 1);
+}

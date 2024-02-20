@@ -1,0 +1,48 @@
+.directionInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 35px;
+
+  background-color: rgba(247, 246, 246, 1);
+}
+
+/*trainInfo*/
+
+.trainInfo {
+  display: flex;
+  align-items: center;
+  column-gap: 27px;
+
+  max-width: 155px;
+}
+
+.trainInfoNumber {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: rgba(62, 60, 65, 1);
+}
+
+.trainInfoSub {
+  color: rgba(146, 143, 148, 1);
+}
+
+
+/*CityInfo*/
+
+.cityInfoTime {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/*timeInfo*/
+
+.timeInfo {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    font-size: 18px;
+    font-weight: 400;
+}
