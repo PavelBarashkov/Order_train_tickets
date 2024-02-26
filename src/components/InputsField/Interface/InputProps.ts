@@ -5,10 +5,12 @@ export interface InputProps {
     validate?: (value: any) => undefined | string | Promise<any>
     type?: string
     multiple?: boolean
-    value?: string
+    value?:  any
     id?: string
     max?: number
     min?: number
     step?: number
     typeInput?: string
+    handler?: (e:any) => void
+    onClick?: () => void
 } 

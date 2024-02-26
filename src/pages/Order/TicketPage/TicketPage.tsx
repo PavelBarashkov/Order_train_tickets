@@ -11,7 +11,7 @@ export const TicketPage: React.FC = () => {
       <Header
         logo={<Logo logo="Лого" />}
         navBar={<Navigation.NavBar />}
-        form={<FormSearchTickets isMain={false} />}
+        form={<FormSearchTickets.FormSearchTickets isMain={false} />}
         stageBar={<Navigation.StageBar />}
       />
       <PageContainerWithSidBar asideBar={<FilterTickets />}>

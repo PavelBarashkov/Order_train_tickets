@@ -36,6 +36,10 @@ export default defineConfig({
         find: "@modules",
         replacement: path.resolve(__dirname, "src/modules"),
       },
+      {
+        find: "@interface",
+        replacement: path.resolve(__dirname, "src/interface"),
+      },
     ],
   },
 })

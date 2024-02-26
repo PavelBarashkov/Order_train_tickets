@@ -1,16 +1,11 @@
 .inputs {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   column-gap: 8px;
 }
 
-.inputs img {
-  margin-top: 45px;
-  align-self: center;
 
-  cursor: pointer;
-}
 
 .inputs div {
   width: 325px;
@@ -20,13 +15,6 @@
   position: relative;
 }
 
-.input span {
-  position: absolute;
-  right: 15px;
-  bottom: 13px;
-
-  width: 21px;
-  height: 30px;
-
-  background: url(../../../../assets/icons/location.png);
+.inputs img{
+  cursor: pointer;
 }

@@ -1,7 +1,10 @@
+import { useState } from "react"
+import { subscribe } from "../../../../API"
 import classes from "./form.module.css"
 import { Formik } from "formik"
 
 export const Form = () => {
+  const [isSubscribe, setSubscribe] = useState<boolean>(false)
   return (
     <Formik
       initialValues={{ email: "" }}
@@ -12,15 +15,16 @@ export const Form = () => {
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
         ) {
-          errors.email = "Invalid email address"
+          errors.email = "Неверный формат E-mail"
         }
         return errors
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2))
-          setSubmitting(false)
-        }, 400)
+      onSubmit={async values => {
+        await subscribe(values.email).then(data => {
+          if (data.status === 200) {
+            setSubscribe(true)
+          }
+        })
       }}
     >
       {({
@@ -28,7 +32,6 @@ export const Form = () => {
         errors,
         touched,
         handleChange,
-        handleBlur,
         handleSubmit,
         isSubmitting,
       }) => (
@@ -56,9 +59,10 @@ export const Form = () => {
               ОТПРАВИТЬ
             </button>
           </div>
-          <div style={{ color: "red" }}>
-            {errors.email && touched.email && errors.email}
-          </div>
+          {errors.email && touched.email && errors.email && (
+            <div style={{ color: "red" }}>{errors.email}</div>
+          )}
+          {isSubscribe && <div style={{ color: "green" }}>Готово!</div>}
         </form>
       )}
     </Formik>

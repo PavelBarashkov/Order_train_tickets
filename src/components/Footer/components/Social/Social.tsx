@@ -11,7 +11,7 @@ export const Social = () => {
   return (
     <div className={classes.icons}>
       {icons.map((icon: string) => (
-        <img src={icon} alt="" />
+        <img key={icon} src={icon} alt="" />
       ))}
     </div>
   )
