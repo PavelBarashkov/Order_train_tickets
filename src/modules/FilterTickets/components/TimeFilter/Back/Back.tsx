@@ -1,7 +1,7 @@
 import type React from "react"
 import { ContainerForDirection } from "../ContainerForDirection/ContainerForDirection"
-import { InputsField } from "@components"
 import iconBack from "@assets/icons/Subtract (2).png"
+import { TimeRange } from "../TimeRange/TimeRange"
 
 export const Back: React.FC = () => {
   return (
@@ -9,23 +9,19 @@ export const Back: React.FC = () => {
       iconDirection={iconBack}
       title="Обратно"
       inputTo={
-        <InputsField.RangeInput
-          name="to"
-          placeholder=""
-          max={24}
-          min={0}
-          step={1}
-          typeInput="date"
+        <TimeRange
+          departure={{
+            start: "end_departure_hour_from",
+            end: "end_departure_hour_to",
+          }}
         />
       }
       inputBack={
-        <InputsField.RangeInput
-          name="back"
-          placeholder=""
-          max={24}
-          min={0}
-          step={1}
-          typeInput="date"
+        <TimeRange
+          departure={{
+            start: "end_arrival_hour_from",
+            end: "end_arrival_hour_to",
+          }}
         />
       }
     />
