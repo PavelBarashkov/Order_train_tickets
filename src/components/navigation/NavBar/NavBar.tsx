@@ -1,6 +1,8 @@
 import type React from "react"
 import classes from "./navBar.module.css"
 import { Container, Nav, Navbar as NavBarBootstrap } from "react-bootstrap"
+import { NavLink } from "react-router-dom"
+import { MAIN_ROUTE } from "../../../pages"
 
 export const NavBar: React.FC = () => {
   return (
@@ -9,12 +11,12 @@ export const NavBar: React.FC = () => {
         <NavBarBootstrap.Toggle aria-controls="basic-navbar-nav" />
         <NavBarBootstrap.Collapse id="basic-navbar-nav">
           <Nav className={classes.navList}>
-            <Nav.Link className={classes.menuLink} href="#home">
+            <NavLink className={classes.menuLink} to={MAIN_ROUTE}>
               О нас
-            </Nav.Link>
-            <Nav.Link className={classes.menuLink}>Как это работает</Nav.Link>
-            <Nav.Link className={classes.menuLink}>Отзывы</Nav.Link>
-            <Nav.Link className={classes.menuLink}>Контакты</Nav.Link>
+            </NavLink>
+            <NavLink className={classes.menuLink} to={MAIN_ROUTE}>Как это работает</NavLink>
+            <NavLink className={classes.menuLink} to={MAIN_ROUTE}>Отзывы</NavLink>
+            <NavLink className={classes.menuLink} to={MAIN_ROUTE}>Контакты</NavLink>
           </Nav>
         </NavBarBootstrap.Collapse>
       </Container>

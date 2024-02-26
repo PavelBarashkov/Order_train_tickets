@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import {
   CONFIRMATION_ORDER_ROUTE,
   MAIN_ROUTE,
@@ -22,13 +23,15 @@ interface Path {
   element: React.ReactNode
 }
 
+// const {routeFrom} = useAppSelector((state: any) => (state.searchTickets))
+
 export const publicRoutes: Path[] = [
   {
     path: MAIN_ROUTE,
     element: <MainPage />,
   },
   {
-    path: TICKET_ROUTE,
+    path: TICKET_ROUTE ,
     element: <TicketPage />,
   },
   {

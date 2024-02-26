@@ -4,9 +4,9 @@ import { useField } from "formik"
 import { MyInput } from "../../UI"
 import type { InputProps } from "../Interface/InputProps"
 
-export const TextInput: React.FC<InputProps> = ({ label, ...props }) => {
-  const [filed, meta] = useField(props)
-
+export const TextInput: React.FC<InputProps> = ({ label, handler, ...props }) => {
+  const [field, meta] = useField(props)
+  console.log(meta)
   return (
     <div>
       {label && (
@@ -14,10 +14,15 @@ export const TextInput: React.FC<InputProps> = ({ label, ...props }) => {
           {label}
         </label>
       )}
-      <MyInput {...filed} {...props} />
+      <MyInput {...field} {...props} />
       {meta.touched && meta.error ? (
-        <div className={classes.inputError}>{meta.error}</div>
+        <div className={classes.inputError}>jib,rf</div>
       ) : null}
     </div>
   )
 }
+
+
+
+
+

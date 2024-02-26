@@ -6,6 +6,7 @@ import { TicketPage } from "./Order/TicketPage/TicketPage"
 import { TrainInfoPage } from "./Order/TrainInfoPage/TrainInfoPage"
 import { MainPage } from "./Main/MainPage"
 import { MAIN_ROUTE } from "./helpers/const/const"
+import { TICKET_ROUTE } from "./helpers/const/const"
 
 export {
   ConfirmationPage,
@@ -15,5 +16,6 @@ export {
   TicketPage,
   TrainInfoPage,
   MainPage,
-  MAIN_ROUTE
+  MAIN_ROUTE,
+  TICKET_ROUTE
 }

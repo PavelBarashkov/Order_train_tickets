@@ -1,8 +1,11 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { configureStore } from "@reduxjs/toolkit"
+import { FormSearchTickets } from "@modules"
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    searchTickets: FormSearchTickets.searchTickets.reducer,
+  },
 })
 
 export type AppStore = typeof store

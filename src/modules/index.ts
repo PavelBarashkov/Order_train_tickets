@@ -1,4 +1,4 @@
-import { FormSearchTickets } from "./FormSearchTickets"
+import  * as FormSearchTickets  from "./FormSearchTickets"
 import { FilterTickets } from "./FilterTickets"
 import { TicketInfo } from "./TicketInfo"
 

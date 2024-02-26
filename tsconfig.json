@@ -21,7 +21,7 @@
       "@components": ["./src/components/"],
       "@assets": ["./src/assets/"],
       "@modules": ["./src/modules/"],
-
+      "@interface": ["./src/interface/"],
     },
   },
   "references": [{ "path": "./tsconfig.node.json" }],

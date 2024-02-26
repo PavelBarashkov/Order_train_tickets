@@ -11,7 +11,7 @@ export const MainPage: React.FC = () => {
         logo={<Logo logo="Лого" />}
         navBar={<Navigation.NavBar />}
         title={<IntroTitle />}
-        form={<FormSearchTickets isMain={true} />}
+        form={<FormSearchTickets.FormSearchTickets isMain={true} />}
       />
       <StaticInfo.About />
       <StaticInfo.HowItWorks />

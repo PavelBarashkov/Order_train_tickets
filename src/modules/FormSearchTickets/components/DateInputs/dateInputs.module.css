@@ -1,21 +1,21 @@
 .inputs {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  column-gap: 40px;
-}
-
-.input {
-  position: relative;
-}
-
-.inputs span {
-  position: absolute;
-  right: 11px;
-  bottom: 11px;
-
-  width: 30px;
-  height: 34px;
-
-  background: url(../../../../assets/icons/calendar.png);
-}
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    column-gap: 40px;
+  }
+  
+  .input {
+    position: relative;
+  }
+  
+  .inputs span {
+    position: absolute;
+    right: 11px;
+    bottom: 11px;
+  
+    width: 30px;
+    height: 34px;
+  
+    background: url(../../../../assets/icons/calendar.png);
+  }
