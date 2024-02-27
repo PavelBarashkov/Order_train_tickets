@@ -28,6 +28,9 @@ export const DateInputs: React.FC<IDateInputsProps> = ({ setField }) => {
 
     setField(dateName, format)
     dispatch(setDate({ dateName, value: format }))
+    if (date) {
+      console.log(false)
+    }
   }
 
   useEffect(() => {

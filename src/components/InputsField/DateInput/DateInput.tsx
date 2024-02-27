@@ -17,7 +17,6 @@ export const DateInput: React.FC<DateInputProps> = ({
   ...props
 }) => {
   const [filed] = useField(props)
-  console.log(date)
 
   return (
     <div>
