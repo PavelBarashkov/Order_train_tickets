@@ -66,18 +66,18 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
 
   useEffect(() => {
     const parsed = queryString.parse(location.search)
-    if (parsed.routeFromId) {
+    if (parsed.from_city_id) {
       const value: ICity = {
-        _id: typeof parsed.routeFromId === "string" ? parsed.routeFromId : "",
+        _id: typeof parsed.from_city_id === "string" ? parsed.from_city_id : "",
         name:
           typeof parsed.routeFromName === "string" ? parsed.routeFromName : "",
       }
       dispatch(setCity({ direction: "routeFrom", value }))
       setField(direction.routeFrom, value)
     }
-    if (parsed.routeToId) {
+    if (parsed.to_city_id) {
       const value: ICity = {
-        _id: typeof parsed.routeToId === "string" ? parsed.routeToId : "",
+        _id: typeof parsed.to_city_id === "string" ? parsed.to_city_id : "",
         name: typeof parsed.routeToName === "string" ? parsed.routeToName : "",
       }
       dispatch(setCity({ direction: "routeTo", value }))

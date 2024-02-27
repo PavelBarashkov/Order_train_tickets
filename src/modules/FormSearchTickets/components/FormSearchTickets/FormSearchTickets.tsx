@@ -30,10 +30,10 @@ export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
 
   const handlerBtn = () => {
     const queryParams = new URLSearchParams()
-    queryParams.append("routeFromId", routeFrom?._id || "")
+    queryParams.append("from_city_id", routeFrom?._id || "")
     queryParams.append("routeFromName", routeFrom?.name || "")
 
-    queryParams.append("routeToId", routeTo?._id || "")
+    queryParams.append("to_city_id", routeTo?._id || "")
     queryParams.append("routeToName", routeTo?.name || "")
 
     if (date_start) {
