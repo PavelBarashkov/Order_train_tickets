@@ -7,7 +7,8 @@ import { getCity, setCity, swapRoutes } from "../../slice/searchTickets"
 import { InputsField } from "@components"
 import { useEffect } from "react"
 import queryString from "query-string"
-import { useLocation } from "react-router-dom"
+import { useLocation, useSearchParams } from "react-router-dom"
+import { decode } from "punycode"
 
 interface IDirectionInputsProps {
   placeholder: {
@@ -34,7 +35,7 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
   setField,
 }) => {
   const dispatch = useAppDispatch()
-  const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { routeFrom, routeTo } = useAppSelector(
     (state: any) => state.searchTickets,
   )
@@ -49,9 +50,11 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
   const handlerAutocomplete = (event: any, value: any, direction: string) => {
     if (value === null) {
       setField(direction, { _id: "", name: "" })
+      dispatch(setCity({ direction, value: { _id: "", name: "" } }))
+    } else {
+      setField(direction, value)
+      dispatch(setCity({ direction, value }))
     }
-    setField(direction, value)
-    dispatch(setCity({ direction, value }))
   }
 
   const handlerInput = (e: any, params: any) => {
@@ -65,24 +68,25 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
   }
 
   useEffect(() => {
-    const parsed = queryString.parse(location.search)
-    if (parsed.routeFromId) {
-      const value: ICity = {
-        _id: typeof parsed.routeFromId === "string" ? parsed.routeFromId : "",
-        name:
-          typeof parsed.routeFromName === "string" ? parsed.routeFromName : "",
-      }
-      dispatch(setCity({ direction: "routeFrom", value }))
-      setField(direction.routeFrom, value)
+    const routeFromCity = searchParams.get("routeFromCity") || ""
+    const from_city_id = searchParams.get("from_city_id") || ""
+    const routeToCity = searchParams.get("routeToCity") || ""
+    const to_city_id = searchParams.get("to_city_id") || ""
+
+    const valueFrom = {
+      _id: from_city_id,
+      name: routeFromCity,
     }
-    if (parsed.routeToId) {
-      const value: ICity = {
-        _id: typeof parsed.routeToId === "string" ? parsed.routeToId : "",
-        name: typeof parsed.routeToName === "string" ? parsed.routeToName : "",
-      }
-      dispatch(setCity({ direction: "routeTo", value }))
-      setField(direction.routeTo, value)
+    console.log(valueFrom)
+    const valueTo = {
+      _id: to_city_id,
+      name: routeToCity,
     }
+    dispatch(setCity({ direction: "routeFrom", value: valueFrom }))
+    setField(direction.routeFrom, valueFrom)
+
+    dispatch(setCity({ direction: "routeTo", value: valueTo }))
+    setField(direction.routeTo, valueTo)
   }, [])
 
   return (
