@@ -1,9 +1,7 @@
 import type React from "react"
 import { Header, PageContainerWithSidBar } from "../../../layouts"
 import { Logo, Navigation } from "@components"
-import { FilterTickets, FormSearchTickets } from "@modules"
-import { CardTicket } from "../../../components/Ticket/CardTicket/CardTicket/CardTicket"
-import { CardTicketList } from "../../../components/Ticket/CardTicket/CardTicketList/CardTicketList"
+import { FilterTickets, FormSearchTickets, ListTickets } from "@modules"
 
 export const TicketPage: React.FC = () => {
   return (
@@ -14,8 +12,8 @@ export const TicketPage: React.FC = () => {
         form={<FormSearchTickets.FormSearchTickets isMain={false} />}
         stageBar={<Navigation.StageBar />}
       />
-      <PageContainerWithSidBar asideBar={<FilterTickets />}>
-        <CardTicketList/>
+      <PageContainerWithSidBar asideBar={<FilterTickets.FilterTickets />}>
+        <ListTickets.ListTickets/>
       </PageContainerWithSidBar>
     </>
   )

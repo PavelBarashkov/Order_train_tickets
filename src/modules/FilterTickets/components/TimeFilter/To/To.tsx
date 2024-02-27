@@ -1,7 +1,7 @@
 import type React from "react"
 import iconTo from "@assets/icons/to.png"
 import { ContainerForDirection } from "../ContainerForDirection/ContainerForDirection"
-import { InputsField } from "@components"
+import { TimeRange } from "../TimeRange/TimeRange"
 
 export const To: React.FC = () => {
   return (
@@ -9,23 +9,19 @@ export const To: React.FC = () => {
       iconDirection={iconTo}
       title="Туда"
       inputTo={
-        <InputsField.RangeInput
-          name="to"
-          placeholder=""
-          max={24}
-          min={0}
-          step={1}
-          typeInput="date"
+        <TimeRange
+          departure={{
+            start: "start_departure_hour_from",
+            end: "start_departure_hour_to",
+          }}
         />
       }
       inputBack={
-        <InputsField.RangeInput
-          name="back"
-          placeholder=""
-          min={0}
-          max={24}
-          step={1}
-          typeInput="date"
+        <TimeRange
+          departure={{
+            start: "start_arrival_hour_from",
+            end: "start_arrival_hour_to",
+          }}
         />
       }
     />
