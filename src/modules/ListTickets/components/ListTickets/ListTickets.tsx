@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { getTicket } from "../../slice/listTicketsSlice"
 import type { RootState } from "../../../../app/store"
+import { ManagementList } from "../ManagementList"
 
 export const ListTickets: React.FC = () => {
   const location = useLocation()
@@ -23,7 +24,7 @@ export const ListTickets: React.FC = () => {
   return (
     <Row className="g-5">
       <Col>
-        <SortTickets total_count={total_count} />
+        <ManagementList/>
       </Col>
     </Row>
   )
