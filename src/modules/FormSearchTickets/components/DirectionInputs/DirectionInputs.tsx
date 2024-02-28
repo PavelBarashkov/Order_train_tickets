@@ -5,10 +5,10 @@ import type { ICity } from "@interface"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { getCity, setCity, swapRoutes } from "../../slice/searchTickets"
 import { InputsField } from "@components"
+import type { ChangeEvent } from "react"
 import { useEffect } from "react"
-import queryString from "query-string"
 import { useLocation, useSearchParams } from "react-router-dom"
-import { decode } from "punycode"
+import { MAIN_ROUTE } from "@pages"
 
 interface IDirectionInputsProps {
   placeholder: {
@@ -36,6 +36,7 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
 }) => {
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
+  const location = useLocation()
   const { routeFrom, routeTo } = useAppSelector(
     (state: any) => state.searchTickets,
   )
@@ -47,13 +48,46 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
     setField(direction.routeTo, newRouteTo)
   }
 
-  const handlerAutocomplete = (event: any, value: any, direction: string) => {
+  const handlerAutocomplete = (
+    event: ChangeEvent<HTMLInputElement>,
+    value: ICity,
+    direction: string,
+  ) => {
     if (value === null) {
       setField(direction, { _id: "", name: "" })
       dispatch(setCity({ direction, value: { _id: "", name: "" } }))
-    } else {
-      setField(direction, value)
-      dispatch(setCity({ direction, value }))
+      switch (direction) {
+        case "routeFrom":
+          searchParams.delete("routeFromCity")
+          searchParams.delete("from_city_id")
+          setSearchParams(searchParams)
+          break
+        case "routeTo":
+          searchParams.delete("routeToCity")
+          searchParams.delete("to_city_id")
+          setSearchParams(searchParams)
+          break
+      }
+      searchParams.delete("routeFromCity")
+      setSearchParams(searchParams)
+      return
+    }
+
+    setField(direction, value)
+    dispatch(setCity({ direction, value }))
+
+    if (location.pathname !== MAIN_ROUTE) {
+      switch (direction) {
+        case "routeFrom":
+          searchParams.set("routeFromCity", value.name)
+          searchParams.set("from_city_id", value._id)
+          setSearchParams(searchParams)
+          break
+        case "routeTo":
+          searchParams.set("routeToCity", value.name)
+          searchParams.set("to_city_id", value._id)
+          setSearchParams(searchParams)
+      }
     }
   }
 
@@ -77,7 +111,6 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
       _id: from_city_id,
       name: routeFromCity,
     }
-    console.log(valueFrom)
     const valueTo = {
       _id: to_city_id,
       name: routeToCity,
