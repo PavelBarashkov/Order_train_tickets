@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: rgba(146, 143, 148, 1);
+  font-size: 18px;
+}
+
+.containerSort {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 15px;
+}
