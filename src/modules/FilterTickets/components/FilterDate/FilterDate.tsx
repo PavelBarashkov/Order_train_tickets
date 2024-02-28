@@ -1,14 +1,11 @@
 import type React from "react"
 import classes from "./filterDate.module.css"
-import { useLocation } from "react-router-dom"
 import { DateInput } from "./DateInput/DateInput"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { setDate } from "../../../FormSearchTickets/slice/searchTickets"
 import type { RootState } from "../../../../app/store"
-import { useEffect } from "react"
 
 export const FilterDate: React.FC = () => {
-  const location = useLocation()
   const dispatch = useAppDispatch()
   const { date_start, date_end } = useAppSelector(
     (state: RootState) => state.searchTickets,
@@ -24,15 +21,6 @@ export const FilterDate: React.FC = () => {
 
     dispatch(setDate({ dateName, value: format }))
   }
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search)
-    searchParams.set("date_start", date_start)
-    searchParams.set("date_end", date_end)
-
-    const newSearch = `?${searchParams.toString()}`
-    window.history.replaceState(null, "", `${location.pathname}${newSearch}`)
-  }, [date_start, date_end, location.search])
 
   return (
     <div className={classes.filterDate}>
