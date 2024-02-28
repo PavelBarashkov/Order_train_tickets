@@ -1,11 +1,12 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { configureStore } from "@reduxjs/toolkit"
-import { FilterTickets, FormSearchTickets } from "@modules"
+import { FilterTickets, FormSearchTickets, ListTickets } from "@modules"
 
 export const store = configureStore({
   reducer: {
     searchTickets: FormSearchTickets.searchTickets.reducer,
-    filterTickets: FilterTickets.filterTicketsSlice.reducer
+    filterTickets: FilterTickets.filterTicketsSlice.reducer,
+    listTickets: ListTickets.listTicketsSlice.reducer,
   },
 })
 

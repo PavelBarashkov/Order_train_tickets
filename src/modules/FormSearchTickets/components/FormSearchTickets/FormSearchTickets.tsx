@@ -3,11 +3,12 @@ import { DirectionInputs } from "../DirectionInputs/DirectionInputs"
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import { BtnSubmit } from "../BtnSubmit"
-import { useAppSelector } from "../../../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { DateInputs } from "../DateInputs"
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { getSearchUrl } from "../../helpers/getSearchUrl "
-import { TICKET_ROUTE } from "../../../../pages"
+import { MAIN_ROUTE } from "../../../../pages"
+import { getTicket } from "../../../ListTickets/slice/listTicketsSlice"
 
 interface FormSearchTicketsProps {
   isMain: boolean
@@ -28,25 +29,14 @@ export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
   }
   const navigate = useNavigate()
   const location = useLocation()
-  const [searchParams, setSearchParams] = useSearchParams()
-
+  const dispatch = useAppDispatch()
 
   const handleSubmit = () => {
-    if (location.pathname === `/${TICKET_ROUTE}`) {
-      searchParams.set("routeFromCity", routeFrom.name)
-      searchParams.set("from_city_id", routeFrom._id)
-      searchParams.set("routeToCity", routeTo.name)
-      searchParams.set("to_city_id", routeTo._id)
-      if (date_start) {
-        searchParams.set("date_start", date_start)
-      }
-      if (date_end) {
-        searchParams.set("date_end", date_end)
-      }
-      setSearchParams(searchParams)
-    } else {
-      navigate(getSearchUrl({ routeFrom, routeTo, date_start, date_end }))
+    if (location.pathname !== MAIN_ROUTE) {
+      dispatch(getTicket(location.search))
+      return
     }
+    navigate(getSearchUrl({ routeFrom, routeTo, date_start, date_end }))
   }
 
   return (

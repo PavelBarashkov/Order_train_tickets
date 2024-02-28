@@ -4,8 +4,9 @@ import { InputsField } from "@components"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { setDate } from "../../slice/searchTickets"
 import { useEffect } from "react"
-import queryString from "query-string"
-import { useLocation } from "react-router-dom"
+import { useLocation, useSearchParams } from "react-router-dom"
+import { MAIN_ROUTE } from "@pages"
+import { formatDateToString } from "../../helpers/formatDateToString"
 
 interface IDateInputsProps {
   setField: (dateName: string, value: string) => void
@@ -14,34 +15,44 @@ interface IDateInputsProps {
 export const DateInputs: React.FC<IDateInputsProps> = ({ setField }) => {
   const dispatch = useAppDispatch()
   const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { date_start, date_end } = useAppSelector(
     (state: any) => state.searchTickets,
   )
 
-  const formate = (value: any) => (value < 10 ? `0${value}` : value)
-
   const handleChange = (dateName: string, date: Date) => {
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const format = `${year}-${formate(month)}-${formate(day)}`
+    let format = ""
+
+    if (date) {
+      format = formatDateToString(date)
+    }
 
     setField(dateName, format)
     dispatch(setDate({ dateName, value: format }))
-    if (date) {
-      console.log(false)
+
+    if (location.pathname !== MAIN_ROUTE) {
+      if (format === "") {
+        searchParams.delete(dateName)
+        setSearchParams(searchParams)
+      } else {
+        searchParams.set(dateName, format)
+        setSearchParams(searchParams)
+      }
     }
   }
 
   useEffect(() => {
-    const parsed = queryString.parse(location.search)
-    if (parsed.date_start) {
-      dispatch(setDate({ dateName: "date_start", value: parsed.date_start }))
-      setField("date_start", `${parsed.date_start}`)
+    const dateStartParam = searchParams.get("date_start")
+    const dateEndParam = searchParams.get("date_end")
+
+    if (dateStartParam) {
+      setField("date_start", dateStartParam)
+      dispatch(setDate({ dateName: "date_start", value: dateStartParam }))
     }
-    if (parsed.date_end) {
-      dispatch(setDate({ dateName: "date_end", value: parsed.date_end }))
-      setField("date_start", `${parsed.date_end}`)
+
+    if (dateEndParam) {
+      setField("date_end", dateEndParam)
+      dispatch(setDate({ dateName: "date_end", value: dateEndParam }))
     }
   }, [])
 
