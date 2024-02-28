@@ -4,10 +4,10 @@ import { InfoTrain } from "../InfoTrain"
 import { InfoDirection } from "../InfoDirection"
 import { InfoPricing } from "../InfoPricing"
 
-export const CardTicket: React.FC = () => {
+export const CardTicket: React.FC<any> = ({ticket}) => {
   return (
     <CardTicketContainer
-      trainInfo={<InfoTrain />}
+      trainInfo={<InfoTrain ticket={ticket}/>}
       directionInfo={<InfoDirection />}
       priceInfo={<InfoPricing />}
     />

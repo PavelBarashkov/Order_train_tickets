@@ -35,6 +35,7 @@ export const listTicketsSlice = createSlice({
       })
       .addCase(getTicket.fulfilled, (state, action) => {
         state.total_count = action.payload.total_count
+        state.tickets = action.payload.items
         state.loading = false
       })
     .addCase(getTicket.rejected, (state, action) => {

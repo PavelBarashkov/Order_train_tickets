@@ -3,20 +3,19 @@ import classes from "./infoTrain.module.css"
 import iconArrow from "@assets/icons/Arrow.png"
 import iconTrain from "@assets/icons/iconTrain.png"
 
-export const InfoTrain: React.FC = () => {
+export const InfoTrain: React.FC<any> = ({ ticket }) => {
   return (
     <div className={classes.trainInfo}>
       <img className={classes.trainInfoImg} src={iconTrain} alt="" />
-      <div className={classes.trainInfoNumber}>C192</div>
+      <div className={classes.trainInfoNumber}>
+        {ticket.departure.train.name}
+      </div>
       <div className={classes.trainInfoDirection}>
         <div className={classes.trainInfoDirectionItemCity}>
-          <p className={classes.trainInfoDirectionFromCity}>Адлер</p>
+          <p>{ticket.departure.from.city.name}</p>{" "}
           <img src={iconArrow} alt="" />
         </div>
-        <div className={classes.trainInfoDirectionItemCity}>
-          <p>Москва</p> <img src={iconArrow} alt="" />
-        </div>
-        <p>Санкт-Петербург</p>
+        <p>{ticket.departure.to.city.name}</p>
       </div>
     </div>
   )

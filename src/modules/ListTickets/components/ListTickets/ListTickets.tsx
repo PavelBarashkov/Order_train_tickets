@@ -1,30 +1,26 @@
 import type React from "react"
 import { Col, Row } from "react-bootstrap"
-import { SortTickets } from "../SortTickets/SortTickets"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
-import queryString from "query-string"
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
-import { getTicket } from "../../slice/listTicketsSlice"
-import type { RootState } from "../../../../app/store"
 import { ManagementList } from "../ManagementList"
+import { useAppSelector } from "../../../../app/hooks"
+import type { RootState } from "../../../../app/store"
+import { CardTicket } from "../../../../components/Ticket/CardTicket/CardTicket/CardTicket"
 
 export const ListTickets: React.FC = () => {
-  const location = useLocation()
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const { total_count } = useAppSelector(
-    (state: RootState) => state.listTickets,
-  )
-
-  useEffect(() => {
-    // dispatch(getTicket(location.search))
-  }, [])
+  const { tickets } = useAppSelector((state: RootState) => state.listTickets)
 
   return (
     <Row className="g-5">
       <Col>
-        <ManagementList/>
+        <ManagementList />
+        {tickets.length > 0 ? (
+          <>
+            {tickets.map((ticket: any) => (
+              <CardTicket ticket={ticket}/>
+            ))}          
+          </>
+        ) : (
+          <div>Билетов не найдено</div>
+        )}
       </Col>
     </Row>
   )
