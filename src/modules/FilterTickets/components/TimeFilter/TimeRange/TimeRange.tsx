@@ -3,7 +3,7 @@ import "./style.css"
 import classes from "./myRangeInput.module.css"
 import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 
 const minDistance = 1
 
@@ -26,6 +26,8 @@ export const TimeRange: React.FC<ITimeRangeProps> = ({
   const [value, setValue] = React.useState<number[]>([0, 0])
   const location = useLocation()
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const handleChange = (
     event: Event,
     newValue: number | number[],
@@ -50,7 +52,6 @@ export const TimeRange: React.FC<ITimeRangeProps> = ({
   }
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search)
     const departure_start = searchParams.get(departure.start)
     const departure_end = searchParams.get(departure.end)
 
@@ -73,6 +74,8 @@ export const TimeRange: React.FC<ITimeRangeProps> = ({
         valueLabelFormat={valueLabelFormat}
         disableSwap
         step={1}
+        min={0}
+        max={24}
       />
       <div className={classes.label}>
         <div>00:00</div>

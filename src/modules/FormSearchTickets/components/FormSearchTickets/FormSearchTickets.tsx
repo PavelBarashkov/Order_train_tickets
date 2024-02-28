@@ -3,10 +3,12 @@ import { DirectionInputs } from "../DirectionInputs/DirectionInputs"
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import { BtnSubmit } from "../BtnSubmit"
-import { useAppSelector } from "../../../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { DateInputs } from "../DateInputs"
 import { useLocation, useNavigate } from "react-router-dom"
-import { TICKET_ROUTE } from "@pages"
+import { getSearchUrl } from "../../helpers/getSearchUrl "
+import { MAIN_ROUTE } from "../../../../pages"
+import { getTicket } from "../../../ListTickets/slice/listTicketsSlice"
 
 interface FormSearchTicketsProps {
   isMain: boolean
@@ -15,8 +17,6 @@ interface FormSearchTicketsProps {
 export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
   isMain,
 }) => {
-  const navigate = useNavigate()
-  const location = useLocation()
   const { cities, routeFrom, routeTo, date_start, date_end } = useAppSelector(
     (state: any) => state.searchTickets,
   )
@@ -27,30 +27,16 @@ export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
     date_start,
     date_end,
   }
+  const navigate = useNavigate()
+  const location = useLocation()
+  const dispatch = useAppDispatch()
 
-  const handlerBtn = () => {
-    const queryParams = new URLSearchParams()
-    queryParams.append("from_city_id", routeFrom?._id || "")
-    queryParams.append("routeFromName", routeFrom?.name || "")
-
-    queryParams.append("to_city_id", routeTo?._id || "")
-    queryParams.append("routeToName", routeTo?.name || "")
-
-    if (date_start) {
-      queryParams.append("date_start", date_start)
+  const handleSubmit = () => {
+    if (location.pathname !== MAIN_ROUTE) {
+      dispatch(getTicket(location.search))
+      return
     }
-    if (date_end) {
-      queryParams.append("date_end", date_end)
-    }
-    const queryString = queryParams.toString()
-    const currentPath = location.pathname
-    const newPath = `${TICKET_ROUTE}?${queryString}`
-
-    if (currentPath === `/${TICKET_ROUTE}`) {
-      navigate(`?${queryString}`)
-    } else {
-      navigate(newPath)
-    }
+    navigate(getSearchUrl({ routeFrom, routeTo, date_start, date_end }))
   }
 
   return (
@@ -68,7 +54,7 @@ export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
         })}
         validateOnChange={false}
         validateOnBlur={true}
-        onSubmit={handlerBtn}
+        onSubmit={handleSubmit}
       >
         {({ setFieldValue }) => (
           <Form>

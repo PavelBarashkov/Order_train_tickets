@@ -2,7 +2,7 @@ import type React from "react"
 import classes from "./optionItem.module.css"
 import { MySwitch } from "../../../../../components/UI"
 import { useEffect, useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 
 interface OptionItemProps {
   item: {
@@ -13,29 +13,27 @@ interface OptionItemProps {
 }
 
 export const OptionItem: React.FC<OptionItemProps> = ({ item }) => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [isChecked, setIsChecked] = useState<boolean>(false)
 
   const handleSwitch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchParams = new URLSearchParams(location.search)
     const checked = e.target.checked
 
     if (checked) {
       searchParams.set(item.value, "true")
+      setSearchParams(searchParams)
+      setIsChecked(true)
     } else {
       searchParams.delete(item.value)
+      setSearchParams(searchParams)
+      setIsChecked(false)
     }
-
-    navigate(`?${searchParams.toString()}`, { replace: true })
-    setIsChecked(checked)
   }
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search)
-    const value = searchParams.get(item.value)
-    setIsChecked(value === "true")
-  }, [location.search, item.value])
+    const isActive = searchParams.get(item.value)
+    if (isActive) setIsChecked(true)
+  }, [])
 
   return (
     <div className={classes.item}>
