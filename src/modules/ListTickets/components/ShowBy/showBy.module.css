@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    column-gap: 8px;
+}
+
+.btns {
+  display: flex;
+  max-width: 100px;
+  column-gap: 8px;
+}
+
+.btn {
+  background-color: inherit;
+  color: rgba(146, 143, 148, 1);
+  border: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.btn-primary {
+  --bs-btn-hover-bg: inherit;
+  --bs-btn-bg: inherit;
+  --bs-btn-active-bg: inherit;
+  --bs-btn-active-color: rgba(41, 41, 41, 1);
+  border: none;
+  --bs-btn-color: rgba(41, 41, 41, 1);
+}
