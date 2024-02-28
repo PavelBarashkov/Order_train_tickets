@@ -15,7 +15,7 @@ export const getSearchUrl = ({
 }) => {
   let url = `${TICKET_ROUTE}?routeFromCity=${routeFrom.name}&from_city_id=${routeFrom._id}&routeToCity=${
     routeTo.name
-  }&to_city_id=${routeTo._id}&limit=5`
+  }&to_city_id=${routeTo._id}`
 
   if (date_start) url += `&date_start=${date_start}`
   if (date_end) url += `&date_end=${date_end}`
