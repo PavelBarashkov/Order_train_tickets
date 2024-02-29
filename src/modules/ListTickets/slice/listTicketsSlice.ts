@@ -4,6 +4,8 @@ import { getTickets } from "../API/getTickets"
 
 interface IListTicketsSlice {
   tickets: []
+  offset: number
+  activePage: number
   loading: boolean
   total_count: number
   error: string
@@ -18,6 +20,8 @@ export const getTicket = createAsyncThunk(
 
 const initialState: IListTicketsSlice = {
   tickets: [],
+  offset: 0,
+  activePage: 1,
   loading: false,
   error: "",
   total_count: 0,
@@ -26,7 +30,12 @@ const initialState: IListTicketsSlice = {
 export const listTicketsSlice = createSlice({
   name: "listTicketsSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setOffset: (state, action) => {
+      state.offset = action.payload
+    },
+ 
+  },
   extraReducers: builder => {
     builder
       .addCase(getTicket.pending, state => {
@@ -35,14 +44,15 @@ export const listTicketsSlice = createSlice({
       })
       .addCase(getTicket.fulfilled, (state, action) => {
         state.total_count = action.payload.total_count
+        state.tickets = action.payload.items
         state.loading = false
       })
-    .addCase(getTicket.rejected, (state, action) => {
-      console.log("Error:", action.payload);
-      state.loading = false;
-    })
+      .addCase(getTicket.rejected, (state, action) => {
+        console.log("Error:", action.payload)
+        state.loading = false
+      })
   },
 })
 
-export const {} = listTicketsSlice.actions
+export const { setOffset } = listTicketsSlice.actions
 export default listTicketsSlice.reducer

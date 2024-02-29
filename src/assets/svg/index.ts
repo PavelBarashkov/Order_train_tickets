@@ -1,6 +1,3 @@
-import { Sit } from "./Svg"
-import { ReservedSeat } from "./Svg"
-import { Coupe } from "./Svg"
-import { Luxury } from "./Svg"
+import { Express, Sit, ReservedSeat, Coupe, Luxury, Wifi, Food } from "./Svg"
 
-export { Sit, ReservedSeat, Coupe, Luxury }
+export { Sit, ReservedSeat, Coupe, Luxury, Express, Wifi, Food }

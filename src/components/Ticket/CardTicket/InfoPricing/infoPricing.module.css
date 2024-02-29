@@ -1,29 +1,50 @@
 .infoPricing {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    justify-content: space-between;
-    row-gap: 15px;
+  justify-content: space-between;
+  row-gap: 15px;
 
-    padding: 41px 21px 2px 30px;
+  height: 100%;
 }
 
 .infoPricingBtn {
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(255, 168, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 168, 0, 1);
+  width: 100%;
+  font-size: 24px;
+  font-weight: 700;
 
-    font-size: 24px;
-    font-weight: 700;
-
-    border: 1px solid rgba(255, 168, 0, 1);
-    border-radius: 5px;
+  border: 1px solid rgba(255, 168, 0, 1);
+  border-radius: 5px;
 }
 
 .infoPricingBtn:hover {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .infoPricingBtn:active {
-    background-color: inherit;
-    color: rgba(255, 168, 0, 1);
+  background-color: inherit;
+  color: rgba(255, 168, 0, 1);
+}
+
+.infoPricingFooter {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+
+  width: 100%;
+}
+
+.infoPricingOption {
+  align-self: flex-end;
+  display: flex;
+  align-items: end;
+  column-gap: 10px;
+}
+
+.infoPricingList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
 }

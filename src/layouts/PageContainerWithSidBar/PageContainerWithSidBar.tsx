@@ -10,7 +10,7 @@ export const PageContainerWithSidBar: React.FC<
   PageContainerWithSidBarProps
 > = ({ asideBar, children }) => {
   return (
-      <Container style={{ marginTop: 95,  }}>
+      <Container style={{ marginTop: 95, marginBottom: 95 }}>
         <Row className="justify-content-between">
           <Col md='auto'>
             <aside>{asideBar}</aside>

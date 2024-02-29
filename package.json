@@ -25,6 +25,7 @@
     "eslint-plugin-import": "^2.29.1",
     "formik": "^2.4.5",
     "formik-material-ui": "^4.0.0-alpha.2",
+    "moment": "^2.30.1",
     "primereact": "^10.3.3",
     "query-string": "^8.2.0",
     "react": "^18.2.0",
