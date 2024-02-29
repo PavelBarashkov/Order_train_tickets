@@ -12,10 +12,8 @@ export const TicketPage: React.FC = () => {
   const { loading } = useAppSelector((state: RootState) => state.listTickets)
   const location = useLocation()
   const dispatch = useAppDispatch()
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
   let offset = searchParams.get("offset")
-
-
 
   useEffect(() => {
     dispatch(getTicket(location.search))
