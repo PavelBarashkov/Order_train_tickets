@@ -4,9 +4,12 @@ import classes from "./infoPricing.module.css"
 import { useNavigate } from "react-router-dom"
 import { TRAIN_INFO_ROUTER } from "../../../../pages/helpers/const/const"
 import { Svg } from "@assets"
+import { useAppDispatch } from "../../../../app/hooks"
+import { setTicket } from "../../../../modules/TicketInfo/slice/trainInfoSlice"
 
 export const InfoPricing: React.FC<any> = ({ ticket }) => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const {
     departure: { available_seats_info },
   } = ticket
@@ -55,6 +58,7 @@ export const InfoPricing: React.FC<any> = ({ ticket }) => {
 
   const handleBtn = () => {
     navigate(`/${TRAIN_INFO_ROUTER}`)
+    dispatch(setTicket(ticket))
   }
 
   return (
