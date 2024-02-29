@@ -9,12 +9,22 @@ import Nav from "react-bootstrap/Nav"
 import { Svg } from "@assets"
 import { useState } from "react"
 import { CoachItem } from "./CoachItem/CoachItem"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import type { RootState } from "../../../../app/store"
+import { getCoach } from "../../slice/trainInfoSlice"
 
 export const TypeCoach: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string | null>(null)
+  const { ticket } = useAppSelector((state: RootState) => state.trainInfo)
+  const { departure } = ticket
+  const dispatch = useAppDispatch()
 
   const handlerTab = (eventKey: string) => {
     setActiveTab(eventKey)
+  }
+
+  const handleBtnSelectClass = () => {
+    dispatch(getCoach(ticket.departure._id))
   }
 
   return (
@@ -26,80 +36,95 @@ export const TypeCoach: React.FC = () => {
       >
         <Row className={classes.types}>
           <Nav>
-            <Col>
-              <Nav.Item className={classes.typeCoachItem}>
-                <Nav.Link eventKey="sit" className={classes.typeCoachItemLink}>
-                  <Svg.Sit isActive={activeTab === "sit" ? true : false} />{" "}
-                  <div
-                    className={`${activeTab === "sit" ? classes.active : classes.inActive} `}
-                  >
-                    Сидячий
-                  </div>
-                </Nav.Link>
-              </Nav.Item>
-            </Col>
-            <Col>
-              <Nav.Item className={classes.typeCoachItem}>
-                <Nav.Link
-                  eventKey="reserved-seat"
-                  className={classes.typeCoachItemLink}
+            {departure.have_fourth_class && (
+              <Col>
+                <Nav.Item
+                  className={classes.typeCoachItem}
+                  onClick={handleBtnSelectClass}
                 >
-                  <Svg.ReservedSeat
-                    isActive={activeTab === "reserved-seat" ? true : false}
-                  />
-                  <div
-                    className={`${activeTab === "reserved-seat" ? classes.active : classes.inActive} `}
+                  <Nav.Link
+                    eventKey="sit"
+                    className={classes.typeCoachItemLink}
                   >
-                    Плацкарт
-                  </div>
-                </Nav.Link>
-              </Nav.Item>
-            </Col>
-            <Col>
-              <Nav.Item className={classes.typeCoachItem}>
-                <Nav.Link
-                  eventKey="Coupe"
-                  className={classes.typeCoachItemLink}
-                >
-                  <Svg.Coupe isActive={activeTab === "Coupe" ? true : false} />
-                  <div
-                    className={`${activeTab === "Coupe" ? classes.active : classes.inActive} `}
+                    <Svg.Sit isActive={activeTab === "sit" ? true : false} />{" "}
+                    <div
+                      className={`${activeTab === "sit" ? classes.active : classes.inActive} `}
+                    >
+                      Сидячий
+                    </div>
+                  </Nav.Link>
+                </Nav.Item>
+              </Col>
+            )}
+            {departure.have_third_class && (
+              <Col>
+                <Nav.Item className={classes.typeCoachItem}>
+                  <Nav.Link
+                    eventKey="reserved-seat"
+                    className={classes.typeCoachItemLink}
                   >
-                    Купе
-                  </div>
-                </Nav.Link>
-              </Nav.Item>
-            </Col>
-            <Col>
-              <Nav.Item className={classes.typeCoachItem}>
-                <Nav.Link
-                  eventKey="Luxury"
-                  className={classes.typeCoachItemLink}
-                >
-                  <Svg.Luxury
-                    isActive={activeTab === "Luxury" ? true : false}
-                  />
-                  <div
-                    className={`${activeTab === "Luxury" ? classes.active : classes.inActive} `}
+                    <Svg.ReservedSeat
+                      isActive={activeTab === "reserved-seat" ? true : false}
+                    />
+                    <div
+                      className={`${activeTab === "reserved-seat" ? classes.active : classes.inActive} `}
+                    >
+                      Плацкарт
+                    </div>
+                  </Nav.Link>
+                </Nav.Item>
+              </Col>
+            )}
+            {departure.have_second_class && (
+              <Col>
+                <Nav.Item className={classes.typeCoachItem}>
+                  <Nav.Link
+                    eventKey="Coupe"
+                    className={classes.typeCoachItemLink}
                   >
-                    Люкс
-                  </div>
-                </Nav.Link>
-              </Nav.Item>
-            </Col>
+                    <Svg.Coupe
+                      isActive={activeTab === "Coupe" ? true : false}
+                    />
+                    <div
+                      className={`${activeTab === "Coupe" ? classes.active : classes.inActive} `}
+                    >
+                      Купе
+                    </div>
+                  </Nav.Link>
+                </Nav.Item>
+              </Col>
+            )}
+            {departure.have_first_class && (
+              <Col>
+                <Nav.Item className={classes.typeCoachItem}>
+                  <Nav.Link
+                    eventKey="Luxury"
+                    className={classes.typeCoachItemLink}
+                  >
+                    <Svg.Luxury
+                      isActive={activeTab === "Luxury" ? true : false}
+                    />
+                    <div
+                      className={`${activeTab === "Luxury" ? classes.active : classes.inActive} `}
+                    >
+                      Люкс
+                    </div>
+                  </Nav.Link>
+                </Nav.Item>
+              </Col>
+            )}
           </Nav>
         </Row>
         <Col>
           <Tab.Content>
-
             <Tab.Pane eventKey="sit">
-              <CoachItem />
+              <CoachItem ticket={ticket} />
             </Tab.Pane>
 
             <Tab.Pane eventKey="reserved-seat">
               <CoachItem />
             </Tab.Pane>
-            
+
             <Tab.Pane eventKey="Coupe">Тип вагона Купэ</Tab.Pane>
             <Tab.Pane eventKey="Luxury">Тип вагона Lux</Tab.Pane>
           </Tab.Content>

@@ -6,6 +6,15 @@
   padding: 36px 19px;
 }
 
+.headerTo {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  column-gap: 10px;
+
+  padding: 36px 19px;
+}
+
 .headerIconDirection {
   width: 76px;
   height: 100%;

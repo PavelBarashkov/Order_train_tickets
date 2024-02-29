@@ -12,7 +12,7 @@ interface ITypeCoachItemProps {
   children: React.ReactNode
 }
 
-export const CoachItem: React.FC = () => {
+export const CoachItem: React.FC<any> = () => {
   const [activeTab, setActiveTab] = useState<string | null>(null)
 
   const handlerTab = (eventKey: string) => {

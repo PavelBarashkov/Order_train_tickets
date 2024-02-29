@@ -6,6 +6,7 @@ import { TRAIN_INFO_ROUTER } from "../../../../pages/helpers/const/const"
 import { Svg } from "@assets"
 import { useAppDispatch } from "../../../../app/hooks"
 import { setTicket } from "../../../../modules/TicketInfo/slice/trainInfoSlice"
+import { stringify } from "querystring"
 
 export const InfoPricing: React.FC<any> = ({ ticket }) => {
   const navigate = useNavigate()
@@ -59,6 +60,7 @@ export const InfoPricing: React.FC<any> = ({ ticket }) => {
   const handleBtn = () => {
     navigate(`/${TRAIN_INFO_ROUTER}`)
     dispatch(setTicket(ticket))
+    localStorage.setItem("train_info", JSON.stringify(ticket))
   }
 
   return (
