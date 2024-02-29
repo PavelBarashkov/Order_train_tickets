@@ -19,7 +19,7 @@ export const InfoDirection: React.FC<any> = ({ ticket }) => {
             {ticket.departure.from.railway_station_name} вокзал
           </div>
         </div>
-        <div>
+        <div className={classes.timeDirectionContainer}>
           <div className={classes.timeDirection}>
             {moment.unix(ticket.departure.duration).utc().format("HH:mm")}
           </div>
@@ -37,7 +37,6 @@ export const InfoDirection: React.FC<any> = ({ ticket }) => {
           </div>
         </div>
       </div>
-      {/*  тут будет условия его появления */}
 
       {ticket.arrival && (
         <div className={classes.directionInfoItem}>
@@ -52,7 +51,7 @@ export const InfoDirection: React.FC<any> = ({ ticket }) => {
               {ticket.arrival.to.railway_station_name} вокзал
             </div>
           </div>
-          <div>
+          <div className={classes.timeDirectionContainer}>
             <div className={classes.timeDirection}>
               {moment.unix(ticket.arrival.duration).utc().format("HH:mm")}
             </div>

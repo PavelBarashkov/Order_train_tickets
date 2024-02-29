@@ -1,0 +1,16 @@
+.card {
+  border: 1px solid rgba(196, 196, 196, 1);
+
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+.cardInfoTrain {
+    padding: 15px;
+    background-color: rgba(228, 224, 233, 1)
+}
+
+.cardInfo {
+    padding: 15px;
+
+}

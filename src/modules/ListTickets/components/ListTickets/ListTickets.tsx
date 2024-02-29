@@ -9,19 +9,21 @@ export const ListTickets: React.FC = () => {
   const { tickets } = useAppSelector((state: RootState) => state.listTickets)
 
   return (
-    <Row className="g-5">
+    <Row fluid="md" className="g-5">
       <Col>
         <ManagementList />
-        {tickets.length > 0 ? (
-          <>
-            {tickets.map((ticket: any) => (
-              <CardTicket ticket={ticket}/>
-            ))}          
-          </>
-        ) : (
-          <div>Билетов не найдено</div>
-        )}
       </Col>
+      {tickets.length > 0 ? (
+        <>
+          {tickets.map((ticket: any) => (
+            <Col style={{flex: 'auto'}}>
+              <CardTicket ticket={ticket} />
+            </Col>
+          ))}
+        </>
+      ) : (
+        <div>Билетов не найдено</div>
+      )}
     </Row>
   )
 }

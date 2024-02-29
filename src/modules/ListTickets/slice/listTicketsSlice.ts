@@ -38,10 +38,10 @@ export const listTicketsSlice = createSlice({
         state.tickets = action.payload.items
         state.loading = false
       })
-    .addCase(getTicket.rejected, (state, action) => {
-      console.log("Error:", action.payload);
-      state.loading = false;
-    })
+      .addCase(getTicket.rejected, (state, action) => {
+        console.log("Error:", action.payload)
+        state.loading = false
+      })
   },
 })
 
