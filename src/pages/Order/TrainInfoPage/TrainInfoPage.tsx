@@ -8,10 +8,10 @@ export const TrainInfoPage = () => {
       <Header
         logo={<Logo logo="Лого" />}
         navBar={<Navigation.NavBar />}
-        form={<FormSearchTickets isMain={false} />}
+        form={<FormSearchTickets.FormSearchTickets isMain={false} />}
         stageBar={<Navigation.StageBar />}
       />
-      <PageContainerWithSidBar asideBar={<FilterTickets />}>
+      <PageContainerWithSidBar asideBar={<FilterTickets.FilterTickets />}>
         <TicketInfo />
       </PageContainerWithSidBar>
     </>

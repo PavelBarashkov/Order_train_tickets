@@ -53,6 +53,10 @@ export const InfoPricing: React.FC<any> = ({ ticket }) => {
     price_info: firstPrice,
   }
 
+  const handleBtn = () => {
+    navigate(`/${TRAIN_INFO_ROUTER}`)
+  }
+
   return (
     <>
       <div className={classes.infoPricing}>
@@ -79,7 +83,7 @@ export const InfoPricing: React.FC<any> = ({ ticket }) => {
           </div>
 
           <button
-            onClick={() => navigate(TRAIN_INFO_ROUTER)}
+            onClick={handleBtn}
             className={classes.infoPricingBtn}
           >
             Выбрать места
