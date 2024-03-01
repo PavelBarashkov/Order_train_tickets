@@ -12,11 +12,12 @@ import { CoachItem } from "./CoachItem/CoachItem"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import type { RootState } from "../../../../app/store"
 import { getCoach } from "../../slice/trainInfoSlice"
+import { NumberOfWagons } from "../NumberOfWagons"
+import { TabItem } from "./TabItem"
 
-export const TypeCoach: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string | null>(null)
-  const { ticket } = useAppSelector((state: RootState) => state.trainInfo)
-  const { departure } = ticket
+export const TypeCoach: React.FC<any> = ({ ticketInfo }) => {
+  const [activeTab, setActiveTab] = useState<string>("")
+
   const dispatch = useAppDispatch()
 
   const handlerTab = (eventKey: string) => {
@@ -24,9 +25,10 @@ export const TypeCoach: React.FC = () => {
   }
 
   const handleBtnSelectClass = () => {
-    dispatch(getCoach(ticket.departure._id))
+    // dispatch(getCoach(ticket.ticketInfo._id))
   }
 
+  // TODO Вставить компонент для отображение количесво вагонов и активных при просмотре (Осталось разработаь пропсы)
   return (
     <div className={classes.typeCoach}>
       <h3 className={classes.typeCoachTitle}>Тип вагона</h3>
@@ -36,97 +38,64 @@ export const TypeCoach: React.FC = () => {
       >
         <Row className={classes.types}>
           <Nav>
-            {departure.have_fourth_class && (
-              <Col>
-                <Nav.Item
-                  className={classes.typeCoachItem}
-                  onClick={handleBtnSelectClass}
-                >
-                  <Nav.Link
-                    eventKey="sit"
-                    className={classes.typeCoachItemLink}
-                  >
-                    <Svg.Sit isActive={activeTab === "sit" ? true : false} />{" "}
-                    <div
-                      className={`${activeTab === "sit" ? classes.active : classes.inActive} `}
-                    >
-                      Сидячий
-                    </div>
-                  </Nav.Link>
-                </Nav.Item>
-              </Col>
+            {ticketInfo.have_fourth_class && (
+              <TabItem
+                name="Сидячий"
+                isActive={activeTab}
+                eventKey="fourth"
+                onClick={handlerTab}
+              >
+                <Svg.Sit isActive={activeTab === "fourth" ? true : false} />
+              </TabItem>
             )}
-            {departure.have_third_class && (
-              <Col>
-                <Nav.Item className={classes.typeCoachItem}>
-                  <Nav.Link
-                    eventKey="reserved-seat"
-                    className={classes.typeCoachItemLink}
-                  >
-                    <Svg.ReservedSeat
-                      isActive={activeTab === "reserved-seat" ? true : false}
-                    />
-                    <div
-                      className={`${activeTab === "reserved-seat" ? classes.active : classes.inActive} `}
-                    >
-                      Плацкарт
-                    </div>
-                  </Nav.Link>
-                </Nav.Item>
-              </Col>
+            {ticketInfo.have_third_class && (
+              <TabItem
+                name="Плацкарт"
+                isActive={activeTab}
+                eventKey="third"
+                onClick={handlerTab}
+              >
+                <Svg.ReservedSeat
+                  isActive={activeTab === "third" ? true : false}
+                />
+              </TabItem>
             )}
-            {departure.have_second_class && (
-              <Col>
-                <Nav.Item className={classes.typeCoachItem}>
-                  <Nav.Link
-                    eventKey="Coupe"
-                    className={classes.typeCoachItemLink}
-                  >
-                    <Svg.Coupe
-                      isActive={activeTab === "Coupe" ? true : false}
-                    />
-                    <div
-                      className={`${activeTab === "Coupe" ? classes.active : classes.inActive} `}
-                    >
-                      Купе
-                    </div>
-                  </Nav.Link>
-                </Nav.Item>
-              </Col>
+            {ticketInfo.have_second_class && (
+              <TabItem
+                name="Купе"
+                isActive={activeTab}
+                eventKey="second"
+                onClick={handlerTab}
+              >
+                <Svg.Coupe isActive={activeTab === "second" ? true : false} />
+              </TabItem>
             )}
-            {departure.have_first_class && (
-              <Col>
-                <Nav.Item className={classes.typeCoachItem}>
-                  <Nav.Link
-                    eventKey="Luxury"
-                    className={classes.typeCoachItemLink}
-                  >
-                    <Svg.Luxury
-                      isActive={activeTab === "Luxury" ? true : false}
-                    />
-                    <div
-                      className={`${activeTab === "Luxury" ? classes.active : classes.inActive} `}
-                    >
-                      Люкс
-                    </div>
-                  </Nav.Link>
-                </Nav.Item>
-              </Col>
+            {ticketInfo.have_first_class && (
+              <TabItem
+                name="Люкс"
+                isActive={activeTab}
+                eventKey="first"
+                onClick={handlerTab}
+              >
+                <Svg.Luxury isActive={activeTab === "first" ? true : false} />
+              </TabItem>
             )}
           </Nav>
         </Row>
+        <NumberOfWagons />
         <Col>
           <Tab.Content>
-            <Tab.Pane eventKey="sit">
-              <CoachItem ticket={ticket} />
+            <Tab.Pane eventKey="fourth">
+              <div>fourth</div>
+              {/* <CoachItem ticket={ticket} /> */}
             </Tab.Pane>
 
-            <Tab.Pane eventKey="reserved-seat">
-              <CoachItem />
+            <Tab.Pane eventKey="third">
+              <div>third</div>
             </Tab.Pane>
 
-            <Tab.Pane eventKey="Coupe">Тип вагона Купэ</Tab.Pane>
-            <Tab.Pane eventKey="Luxury">Тип вагона Lux</Tab.Pane>
+            <Tab.Pane eventKey="second">Тип вагона Купэ</Tab.Pane>
+            <Tab.Pane eventKey="first">Тип вагона Lux</Tab.Pane>
           </Tab.Content>
         </Col>
       </Tab.Container>

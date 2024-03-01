@@ -1,0 +1,28 @@
+.tabItem {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabItemLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+  justify-content: center;
+}
+
+.inActive {
+  font-size: 24px;
+  font-weight: 400;
+
+  color: rgba(146, 143, 148, 1);
+}
+
+.active {
+  font-size: 24px;
+  font-weight: 400;
+
+  color: rgba(255, 168, 0, 1);
+}

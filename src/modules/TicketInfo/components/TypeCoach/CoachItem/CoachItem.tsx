@@ -46,10 +46,11 @@ export const CoachItem: React.FC<any> = () => {
         </div>
 
         <Tab.Content>
-          {Array.from({length: 4}, (_, index) => (
-            <Tab.Pane  eventKey={index}><TypeItem coach={coach}/></Tab.Pane>
+          {Array.from({ length: 4 }, (_, index) => (
+            <Tab.Pane eventKey={index}>
+              <TypeItem coach={coach} />
+            </Tab.Pane>
           ))}
-
         </Tab.Content>
       </Tab.Container>
     </div>
@@ -58,7 +59,7 @@ export const CoachItem: React.FC<any> = () => {
 
 const coach = {
   number: 12,
-  typeCoach: 'sit',
+  typeCoach: "sit",
   seats: {
     allSeats: 25,
     totalPrice: 25000,
@@ -68,13 +69,13 @@ const coach = {
     },
     top: {
       quantity: 14,
-      cost: 2500
+      cost: 2500,
     },
   },
   options: {
     wifi: true,
     conditioning: true,
     linens_included: true,
-    food: true
-  }
+    food: true,
+  },
 }
