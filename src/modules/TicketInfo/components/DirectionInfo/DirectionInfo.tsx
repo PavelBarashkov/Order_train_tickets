@@ -49,7 +49,7 @@ export const DirectionInfo: React.FC<IDirectionInfoProps> = ({
             : ticketInfo.to.city.name}
         </div>
         <div className={classes.trainInfoSub}>
-          {direction === "true"
+          {direction === "from"
             ? ticketInfo.from.railway_station_name
             : ticketInfo.to.railway_station_name}
         </div>

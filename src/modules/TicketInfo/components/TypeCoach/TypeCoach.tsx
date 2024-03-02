@@ -14,6 +14,7 @@ import type { RootState } from "../../../../app/store"
 import { getCoach } from "../../slice/trainInfoSlice"
 import { NumberOfWagons } from "../NumberOfWagons"
 import { TabItem } from "./TabItem"
+import { TabContentItem } from "../TabContentItem"
 
 export const TypeCoach: React.FC<any> = ({ ticketInfo }) => {
   const [activeTab, setActiveTab] = useState<string>("")
@@ -86,8 +87,7 @@ export const TypeCoach: React.FC<any> = ({ ticketInfo }) => {
         <Col>
           <Tab.Content>
             <Tab.Pane eventKey="fourth">
-              <div>fourth</div>
-              {/* <CoachItem ticket={ticket} /> */}
+              <TabContentItem/>
             </Tab.Pane>
 
             <Tab.Pane eventKey="third">
