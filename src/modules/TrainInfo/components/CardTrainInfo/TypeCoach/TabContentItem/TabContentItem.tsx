@@ -1,9 +1,9 @@
 import type React from "react"
 import classes from "./tabContantItem.module.css"
 import { Col, Row } from "react-bootstrap"
-import { OptionItem } from "../TypeCoach/OptionItem"
-import { Svg } from "../../../../assets"
+import { Svg } from "../../../../../../assets"
 import { useState } from "react"
+import { OptionItem } from "../OptionItem"
 
 export const TabContentItem: React.FC<any> = ({ item }) => {
   const { coach } = item

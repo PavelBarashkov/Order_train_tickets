@@ -3,10 +3,10 @@ import classes from "./directionInfo.module.css"
 import iconTrain from "@assets/icons/IconTrainActive.png"
 import iconTo from "@assets/icons/Vector (2).png"
 import iconTime from "@assets/icons/Group (13).png"
-import { useAppSelector } from "../../../../app/hooks"
-import type { RootState } from "../../../../app/store"
+import { useAppSelector } from "../../../../../app/hooks"
+import type { RootState } from "../../../../../app/store"
 import moment from "moment"
-import type { ITrainInfo } from "../../../../interface"
+import type { ITrainInfo } from "../../../../../interface"
 
 interface IDirectionInfoProps {
   ticketInfo: ITrainInfo

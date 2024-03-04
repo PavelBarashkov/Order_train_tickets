@@ -1,10 +1,11 @@
 import type React from "react"
-import classes from "./cardTicket.module.css"
+import classes from "./cardTrainInfo.module.css"
+import type { ITrainInfo } from "../../../../../interface"
 import { HeaderTicket } from "../HeaderTicket"
 import { DirectionInfo } from "../DirectionInfo"
-import type { ITrainInfo } from "../../../../interface"
 import { NumberOfTickets } from "../NumberOfTickets"
 import { TypeCoach } from "../TypeCoach"
+
 
 interface ICardTicketProps {
   direction: string
@@ -12,7 +13,7 @@ interface ICardTicketProps {
   coachList: any
 }
 
-export const CardTicket: React.FC<ICardTicketProps> = ({
+export const CardTrainInfo: React.FC<ICardTicketProps> = ({
   direction,
   ticketInfo,
   coachList,

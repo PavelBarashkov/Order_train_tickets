@@ -1,12 +1,13 @@
 import type React from "react"
-import classes from "./ticketInfo.module.css"
-import { CardTicket } from "../CardTicket/CardTicket"
+import classes from "./trainInfo.module.css"
+
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import type { RootState } from "../../../../app/store"
 import { useEffect } from "react"
 import { getCoachFrom, getCoachTo } from "../../slice/trainInfoSlice"
+import { CardTrainInfo } from "../CardTrainInfo"
 
-export const TicketInfo: React.FC = () => {
+export const TrainInfo: React.FC = () => {
   // TODO Сделать компонет билета, прнимает (направление, инфу о билете, инфу овогонах)
 
   const { ticket, coachListFrom, coachListTo } = useAppSelector(
@@ -28,14 +29,14 @@ export const TicketInfo: React.FC = () => {
       <div className={classes.title}>Выбор мест</div>
 
       <div className={classes.TicketInfoList}>
-        <CardTicket
+        <CardTrainInfo
           direction="from"
           ticketInfo={departure}
           coachList={coachListFrom}
         />
 
         {ticket.arrival && (
-          <CardTicket
+          <CardTrainInfo
             direction="to"
             ticketInfo={arrival}
             coachList={coachListTo}

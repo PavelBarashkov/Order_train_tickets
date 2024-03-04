@@ -7,10 +7,10 @@ import Nav from "react-bootstrap/Nav"
 
 import { Svg } from "@assets"
 import { useState } from "react"
-import { useAppDispatch } from "../../../../app/hooks"
-import type { RootState } from "../../../../app/store"
+
+import { TabItem } from "../TabItem"
+import { useAppDispatch } from "../../../../../../app/hooks"
 import { NumberOfWagons } from "../NumberOfWagons"
-import { TabItem } from "./TabItem"
 import { TabContentItem } from "../TabContentItem"
 
 export const TypeCoach: React.FC<any> = ({
