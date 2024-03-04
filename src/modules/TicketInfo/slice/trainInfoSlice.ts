@@ -6,19 +6,41 @@ const ticketFromLocalStorage = storedTicket ? JSON.parse(storedTicket) : {}
 
 interface ITrainInfoSlice {
   ticket: any
-  coachList: []
-  loading: boolean
-  error: string
+  coachListFrom: {
+    list: []
+    loading: boolean
+    error: string
+  }
+  coachListTo: {
+    list: []
+    loading: boolean
+    error: string
+  }
 }
 
 const initialState: ITrainInfoSlice = {
   ticket: ticketFromLocalStorage,
-  coachList: [],
-  loading: false,
-  error: "",
+  coachListFrom: {
+    list: [],
+    loading: false,
+    error: "",
+  },
+  coachListTo: {
+    list: [],
+    loading: false,
+    error: "",
+  },
 }
 
-export const getCoach = createAsyncThunk("getTickets", async (id: string) => {
+export const getCoachFrom = createAsyncThunk(
+  "getCoachFrom",
+  async (id: string) => {
+    const response = await getCoachList(id)
+    return response.data
+  },
+)
+
+export const getCoachTo = createAsyncThunk("getCoachTo", async (id: string) => {
   const response = await getCoachList(id)
   return response.data
 })
@@ -33,17 +55,30 @@ export const trainInfoSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getCoach.pending, state => {
-        state.loading = true
-        state.error = ""
+      .addCase(getCoachFrom.pending, state => {
+        state.coachListFrom.loading = true
+        state.coachListFrom.error = ""
       })
-      .addCase(getCoach.fulfilled, (state, action) => {
-        state.coachList = action.payload
-        state.loading = false
+      .addCase(getCoachFrom.fulfilled, (state, action) => {
+        state.coachListFrom.list = action.payload
+        state.coachListFrom.loading = false
       })
-      .addCase(getCoach.rejected, (state, action) => {
+      .addCase(getCoachFrom.rejected, (state, action) => {
         console.log("Error:", action.payload)
-        state.loading = false
+        state.coachListFrom.loading = false
+      })
+
+      .addCase(getCoachTo.pending, state => {
+        state.coachListTo.loading = true
+        state.coachListTo.error = ""
+      })
+      .addCase(getCoachTo.fulfilled, (state, action) => {
+        state.coachListTo.list = action.payload
+        state.coachListTo.loading = false
+      })
+      .addCase(getCoachTo.rejected, (state, action) => {
+        console.log("Error:", action.payload)
+        state.coachListTo.loading = false
       })
   },
 })

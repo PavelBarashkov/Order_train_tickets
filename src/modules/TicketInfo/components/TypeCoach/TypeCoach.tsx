@@ -1,6 +1,5 @@
 import type React from "react"
 import classes from "./typeCoach.module.css"
-import Tabs from "react-bootstrap/Tabs"
 import Row from "react-bootstrap/Row"
 import Tab from "react-bootstrap/Tab"
 import Col from "react-bootstrap/Col"
@@ -8,21 +7,21 @@ import Nav from "react-bootstrap/Nav"
 
 import { Svg } from "@assets"
 import { useState } from "react"
-import { CoachItem } from "./CoachItem/CoachItem"
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { useAppDispatch } from "../../../../app/hooks"
 import type { RootState } from "../../../../app/store"
-import { getCoach } from "../../slice/trainInfoSlice"
 import { NumberOfWagons } from "../NumberOfWagons"
 import { TabItem } from "./TabItem"
 import { TabContentItem } from "../TabContentItem"
 
-export const TypeCoach: React.FC<any> = ({ ticketInfo }) => {
+export const TypeCoach: React.FC<any> = ({ ticketInfo, coachList }) => {
   const [activeTab, setActiveTab] = useState<string>("")
+  const [classActive, setClassActive] = useState<string>("")
 
   const dispatch = useAppDispatch()
 
   const handlerTab = (eventKey: string) => {
     setActiveTab(eventKey)
+    setClassActive(eventKey)
   }
 
   const handleBtnSelectClass = () => {
@@ -83,19 +82,39 @@ export const TypeCoach: React.FC<any> = ({ ticketInfo }) => {
             )}
           </Nav>
         </Row>
-        <NumberOfWagons />
+        <NumberOfWagons coachList={coachList} classActive={classActive} />
         <Col>
           <Tab.Content>
             <Tab.Pane eventKey="fourth">
-              <TabContentItem/>
+              {coachList.list.map((item: any) => {
+                if (item.coach.class_type === "fourth") {
+                  return <TabContentItem item={item}/>
+                }
+              })}
             </Tab.Pane>
 
             <Tab.Pane eventKey="third">
-              <div>third</div>
+            {coachList.list.map((item: any) => {
+                if (item.coach.class_type === "third") {
+                  return <TabContentItem item={item}/>
+                }
+              })}
             </Tab.Pane>
 
-            <Tab.Pane eventKey="second">Тип вагона Купэ</Tab.Pane>
-            <Tab.Pane eventKey="first">Тип вагона Lux</Tab.Pane>
+            <Tab.Pane eventKey="second">
+            {coachList.list.map((item: any) => {
+                if (item.coach.class_type === "second") {
+                  return <TabContentItem item={item}/>
+                }
+              })}
+            </Tab.Pane>
+            <Tab.Pane eventKey="first">
+            {coachList.list.map((item: any) => {
+                if (item.coach.class_type === "first") {
+                  return <TabContentItem item={item}/>
+                }
+              })}
+            </Tab.Pane>
           </Tab.Content>
         </Col>
       </Tab.Container>

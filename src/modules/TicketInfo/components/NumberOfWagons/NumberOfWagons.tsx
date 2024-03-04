@@ -1,15 +1,32 @@
 import type React from "react"
 import classes from "./numberOfWagons.module.css"
 
-export const NumberOfWagons: React.FC = () => {
-  //TODO Получает количесво вагонов. Вагон имеет номер и класс
+interface INumberOfWagonsProps {
+  coachList: any
+  classActive: string
+}
+
+export const NumberOfWagons: React.FC<INumberOfWagonsProps> = ({
+  coachList,
+  classActive,
+}) => {
   return (
     <div className={classes.NumberOfWagons}>
       <div className={classes.NumberOfWagonsList}>
         <div>Вагоны</div>
-        {Array.from({ length: 4 }, (_, index) => (
-          <div className={classes.inActive}>{index}</div>
-        ))}
+        {coachList.loading ? (
+          <div>Получение информации</div>
+        ) : (
+          <>
+            {coachList.list.map((coach: any) => (
+              <div
+                className={`${classActive === coach.coach.class_type ? classes.active : classes.inActive}`}
+              >
+                {coach.coach.name.split("-")[1]}
+              </div>
+            ))}
+          </>
+        )}
       </div>
 
       <div>Нумерация вагонов начинается с головы поезда</div>
