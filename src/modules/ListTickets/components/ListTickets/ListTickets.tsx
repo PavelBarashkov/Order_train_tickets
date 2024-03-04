@@ -1,12 +1,12 @@
 import type React from "react"
 import { Col, Row } from "react-bootstrap"
-import { ManagementList } from "../Managemen/ManagementList"
 import { useAppSelector } from "../../../../app/hooks"
 import type { RootState } from "../../../../app/store"
-import { CardTicket } from "../CardItem/CardTicket/CardTicket"
 import { Pagination } from "../Pagination/Pagination"
 import { useLocation, useSearchParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { ManagementList } from "../ManagementList"
+import { CardTicket } from "../CardTicket"
 
 export const ListTickets: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
