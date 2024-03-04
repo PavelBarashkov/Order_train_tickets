@@ -1,6 +1,6 @@
 import { Logo, Navigation } from "@components"
 import { Header, PageContainerWithSidBar } from "../../../layouts"
-import { FilterTickets, FormSearchTickets, TicketInfo } from "@modules"
+import { FilterTickets, FormSearchTickets, TrainInfo } from "@modules"
 
 export const TrainInfoPage = () => {
   return (
@@ -12,7 +12,7 @@ export const TrainInfoPage = () => {
         stageBar={<Navigation.StageBar />}
       />
       <PageContainerWithSidBar asideBar={<FilterTickets.FilterTickets />}>
-        <TicketInfo />
+        <TrainInfo.TrainInfo />
       </PageContainerWithSidBar>
     </>
   )
