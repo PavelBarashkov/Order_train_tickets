@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 import { Pagination as PaginationBoot } from "react-bootstrap"
 import "./style.css"
 import { useSearchParams } from "react-router-dom"
-import { useAppDispatch } from "../../app/hooks"
-import { setOffset } from "../../modules/ListTickets/slice/listTicketsSlice"
+import { useAppDispatch } from "../../../../app/hooks"
+import { setOffset } from "../../slice/listTicketsSlice"
 
 interface PaginationProps {
   totalCount: number

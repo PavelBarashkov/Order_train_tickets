@@ -1,6 +1,6 @@
 import type React from "react"
-import { useAppSelector } from "../../../../app/hooks"
-import type { RootState } from "../../../../app/store"
+import { useAppSelector } from "../../../../../app/hooks"
+import type { RootState } from "../../../../../app/store"
 
 export const FoundCount: React.FC = () => {
   const { total_count } = useAppSelector(

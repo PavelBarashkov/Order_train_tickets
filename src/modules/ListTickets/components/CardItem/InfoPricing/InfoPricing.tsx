@@ -2,10 +2,10 @@ import type React from "react"
 import { InfoPiceItem } from "../InfoPiceItem"
 import classes from "./infoPricing.module.css"
 import { useNavigate } from "react-router-dom"
-import { TRAIN_INFO_ROUTER } from "../../../../pages/helpers/const/const"
+import { TRAIN_INFO_ROUTER } from "../../../../../pages/helpers/const/const"
 import { Svg } from "@assets"
-import { useAppDispatch } from "../../../../app/hooks"
-import { setTicket } from "../../../../modules/TicketInfo/slice/trainInfoSlice"
+import { useAppDispatch } from "../../../../../app/hooks"
+import { setTicket } from "../../../../TicketInfo/slice/trainInfoSlice"
 import { stringify } from "querystring"
 
 export const InfoPricing: React.FC<any> = ({ ticket }) => {
