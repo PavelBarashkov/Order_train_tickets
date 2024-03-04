@@ -13,7 +13,11 @@ import { NumberOfWagons } from "../NumberOfWagons"
 import { TabItem } from "./TabItem"
 import { TabContentItem } from "../TabContentItem"
 
-export const TypeCoach: React.FC<any> = ({ ticketInfo, coachList }) => {
+export const TypeCoach: React.FC<any> = ({
+  ticketInfo,
+  direction,
+  coachList,
+}) => {
   const [activeTab, setActiveTab] = useState<string>("")
   const [classActive, setClassActive] = useState<string>("")
 
@@ -22,10 +26,6 @@ export const TypeCoach: React.FC<any> = ({ ticketInfo, coachList }) => {
   const handlerTab = (eventKey: string) => {
     setActiveTab(eventKey)
     setClassActive(eventKey)
-  }
-
-  const handleBtnSelectClass = () => {
-    // dispatch(getCoach(ticket.ticketInfo._id))
   }
 
   // TODO Вставить компонент для отображение количесво вагонов и активных при просмотре (Осталось разработаь пропсы)
@@ -88,30 +88,30 @@ export const TypeCoach: React.FC<any> = ({ ticketInfo, coachList }) => {
             <Tab.Pane eventKey="fourth">
               {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "fourth") {
-                  return <TabContentItem item={item}/>
+                  return <TabContentItem item={item} />
                 }
               })}
             </Tab.Pane>
 
             <Tab.Pane eventKey="third">
-            {coachList.list.map((item: any) => {
+              {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "third") {
-                  return <TabContentItem item={item}/>
+                  return <TabContentItem item={item} />
                 }
               })}
             </Tab.Pane>
 
             <Tab.Pane eventKey="second">
-            {coachList.list.map((item: any) => {
+              {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "second") {
-                  return <TabContentItem item={item}/>
+                  return <TabContentItem item={item} />
                 }
               })}
             </Tab.Pane>
             <Tab.Pane eventKey="first">
-            {coachList.list.map((item: any) => {
+              {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "first") {
-                  return <TabContentItem item={item}/>
+                  return <TabContentItem item={item} />
                 }
               })}
             </Tab.Pane>

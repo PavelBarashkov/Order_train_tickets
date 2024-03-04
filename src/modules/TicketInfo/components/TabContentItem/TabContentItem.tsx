@@ -3,11 +3,17 @@ import classes from "./tabContantItem.module.css"
 import { Col, Row } from "react-bootstrap"
 import { OptionItem } from "../TypeCoach/OptionItem"
 import { Svg } from "../../../../assets"
+import { useState } from "react"
 
 export const TabContentItem: React.FC<any> = ({ item }) => {
   const { coach } = item
   const { seats } = item
-
+  const [options, setOptions] = useState<any>({
+    wifi: false,
+    conditioning: false,
+    linens: false,
+    food: false,
+  })
   /*
   Отображает информацию о вагоне такие как 
   номер вагона +
@@ -16,7 +22,13 @@ export const TabContentItem: React.FC<any> = ({ item }) => {
   обслуживание 
   схема поезда с свободными и занятыми местами, с функцией выбора места
   */
-  console.log(coach)
+  const toggleOption = (option: string) => {
+    setOptions((prevState: any) => ({
+      ...prevState,
+      [option]: !prevState[option],
+    }))
+  }
+
   return (
     <div>
       <Row className={classes.row}>
@@ -138,31 +150,43 @@ export const TabContentItem: React.FC<any> = ({ item }) => {
             Обслуживание <span style={{ color: "#C4C4C4" }}>фпк</span>
           </div>
           <div className={classes.colOptionsList}>
-            <OptionItem
-              name="кондиционер"
-              isDisabled={false}
-              isActive={true}
-              icon={<Svg.Conditioning isDisabled={false} isActive={true} />}
-            />
-            <OptionItem
-              name="белье"
-              isDisabled={false}
-              isActive={false}
-              icon={<Svg.Linens isDisabled={false} isActive={false} />}
-            />
+            {coach.have_air_conditioning && (
+              <OptionItem
+                name="кондиционер"
+                isActive={options.conditioning}
+                icon={<Svg.Conditioning isActive={options.conditioning} />}
+                onClick={() => toggleOption("conditioning")}
+              />
+            )}
 
-            <OptionItem
-              name="Wifi"
-              isDisabled={false}
-              isActive={false}
-              icon={<Svg.WifiOption isDisabled={false} isActive={false} />}
-            />
-
+            {coach.have_wifi && (
+              <OptionItem
+                name="Wifi"
+                isActive={options.wifi}
+                icon={<Svg.WifiOption isActive={options.wifi} />}
+                onClick={() => toggleOption("wifi")}
+              />
+            )}
+            {coach.is_linens_included ? (
+              <OptionItem
+                name="белье"
+                isDisabled={true}
+                isActive={false}
+                icon={<Svg.Linens isDisabled={true} isActive={false} />}
+              />
+            ) : (
+              <OptionItem
+                name="белье"
+                isActive={options.linens}
+                icon={<Svg.Linens isActive={options.linens} />}
+                onClick={() => toggleOption("linens")}
+              />
+            )}
             <OptionItem
               name="питание"
-              isDisabled={false}
-              isActive={false}
-              icon={<Svg.FoodOption isDisabled={false} isActive={false} />}
+              isActive={options.food}
+              icon={<Svg.FoodOption isActive={options.food} />}
+              onClick={() => toggleOption("food")}
             />
           </div>
         </Col>

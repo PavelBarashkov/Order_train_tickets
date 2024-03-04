@@ -15,15 +15,19 @@ interface ICardTicketProps {
 export const CardTicket: React.FC<ICardTicketProps> = ({
   direction,
   ticketInfo,
-  coachList
+  coachList,
 }) => {
   // TODO рефакторинг компонента с инфой о вагоне
   return (
     <div className={classes.cardTicket}>
       <HeaderTicket direction={direction} />
       <DirectionInfo direction={direction} ticketInfo={ticketInfo} />
-      <NumberOfTickets/>
-      <TypeCoach ticketInfo={ticketInfo} coachList={coachList}/>
+      <NumberOfTickets />
+      <TypeCoach
+        direction={direction}
+        ticketInfo={ticketInfo}
+        coachList={coachList}
+      />
     </div>
   )
 }
