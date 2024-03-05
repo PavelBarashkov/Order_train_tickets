@@ -2,6 +2,7 @@ import type React from "react"
 import { Fourth } from "../Fourth"
 import { Third } from "../Third"
 import { Second } from "../Second"
+import { First } from "../First"
 
 interface IPlanCoachProps {
   coach: any
@@ -28,5 +29,7 @@ export const PlanCoach: React.FC<IPlanCoachProps> = ({
     return <Second coach={coach} seats={seats} direction={direction} />
   }
 
-  return <div>PlanCoach</div>
+  if (type === "first") {
+    return <First coach={coach} seats={seats} direction={direction} />
+  }
 }

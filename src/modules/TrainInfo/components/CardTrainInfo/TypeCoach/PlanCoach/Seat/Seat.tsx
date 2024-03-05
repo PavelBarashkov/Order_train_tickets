@@ -31,7 +31,7 @@ export const Seat: React.FC<any> = ({
   } else if (type === "bottom") {
     style.top = "98px"
   } else if (type === "lux") {
-    style.top = "29px"
+    style.top = "26px"
   } else if (number < 33) {
     if (number % 2 === 0) {
       style.top = "30px"
@@ -54,7 +54,7 @@ export const Seat: React.FC<any> = ({
   return (
     <button
       type="button"
-      className={`${classes.coach_seat} ${type === "single" ? classes.coach_seat__single : type === "top" ? classes.coach_seat__top : type === "bottom" ? classes.coach_seat__bottom : ""} ${
+      className={`${classes.coach_seat} ${type === "single" ? classes.coach_seat__single : type === "top" ? classes.coach_seat__top : type === "bottom" ? classes.coach_seat__bottom : type === "lux" ? classes.coach_seat__lux : ""} ${
         coachListFrom.selected.seats.some(seat => seat.seat_number === number)
           ? classes.coach_seat_active
           : ""
