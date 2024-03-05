@@ -31,10 +31,7 @@ export const TypeCoach: React.FC<any> = ({
   return (
     <div className={classes.typeCoach}>
       <h3 className={classes.typeCoachTitle}>Тип вагона</h3>
-      <Tab.Container
-        defaultActiveKey="first"
-        onSelect={e => (e ? handlerTab(e) : null)}
-      >
+      <Tab.Container onSelect={e => (e ? handlerTab(e) : null)}>
         <Row className={classes.types}>
           <Nav>
             {ticketInfo.have_fourth_class && (
@@ -87,7 +84,13 @@ export const TypeCoach: React.FC<any> = ({
             <Tab.Pane eventKey="fourth">
               {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "fourth") {
-                  return <TabContentItem item={item} key={item.coach._id} direction={direction}/>
+                  return (
+                    <TabContentItem
+                      item={item}
+                      key={item.coach._id}
+                      direction={direction}
+                    />
+                  )
                 }
               })}
             </Tab.Pane>
@@ -95,7 +98,13 @@ export const TypeCoach: React.FC<any> = ({
             <Tab.Pane eventKey="third">
               {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "third") {
-                  return <TabContentItem item={item} key={item.coach._id} direction={direction}/>
+                  return (
+                    <TabContentItem
+                      item={item}
+                      key={item.coach._id}
+                      direction={direction}
+                    />
+                  )
                 }
               })}
             </Tab.Pane>
@@ -103,14 +112,26 @@ export const TypeCoach: React.FC<any> = ({
             <Tab.Pane eventKey="second">
               {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "second") {
-                  return <TabContentItem item={item} key={item.coach._id} direction={direction}/>
+                  return (
+                    <TabContentItem
+                      item={item}
+                      key={item.coach._id}
+                      direction={direction}
+                    />
+                  )
                 }
               })}
             </Tab.Pane>
             <Tab.Pane eventKey="first">
               {coachList.list.map((item: any) => {
                 if (item.coach.class_type === "first") {
-                  return <TabContentItem item={item} key={item.coach._id} direction={direction}/>
+                  return (
+                    <TabContentItem
+                      item={item}
+                      key={item.coach._id}
+                      direction={direction}
+                    />
+                  )
                 }
               })}
             </Tab.Pane>

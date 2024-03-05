@@ -1,7 +1,10 @@
 import type React from "react"
 import classes from "./seat.module.css"
 import { useAppDispatch, useAppSelector } from "../../../../../../../app/hooks"
-import { setSelectedSeatFrom } from "../../../../../slice/trainInfoSlice"
+import {
+  setSelectedSeatFrom,
+  setSelectedSeatTo,
+} from "../../../../../slice/trainInfoSlice"
 import type { RootState } from "../../../../../../../app/store"
 
 export const Seat: React.FC<any> = ({
@@ -12,6 +15,7 @@ export const Seat: React.FC<any> = ({
   available,
   direction,
   seats,
+  price,
 }) => {
   const dispatch = useAppDispatch()
   const { coachListFrom, coachListTo } = useAppSelector(
@@ -46,18 +50,28 @@ export const Seat: React.FC<any> = ({
 
   const handleBtnSeat = () => {
     if (direction === "from") {
-      dispatch(setSelectedSeatFrom({ id: id, number: number }))
-      console.log(id)
+      dispatch(setSelectedSeatFrom({ id: id, number: number, price: price }))
+    } else {
+      dispatch(setSelectedSeatTo({ id: id, number: number, price: price }))
     }
+    console.log(price)
   }
 
   return (
     <button
       type="button"
       className={`${classes.coach_seat} ${type === "single" ? classes.coach_seat__single : type === "top" ? classes.coach_seat__top : type === "bottom" ? classes.coach_seat__bottom : type === "lux" ? classes.coach_seat__lux : ""} ${
-        coachListFrom.selected.seats.some(seat => seat.seat_number === number)
-          ? classes.coach_seat_active
-          : ""
+        direction === "from"
+          ? coachListFrom.selected.seats.some(
+              seat => seat.seat_number === number && seat.coach_id === id,
+            )
+            ? classes.coach_seat_active
+            : ""
+          : coachListTo.selected.seats.some(
+                seat => seat.seat_number === number && seat.coach_id === id,
+              )
+            ? classes.coach_seat_active
+            : ""
       }`}
       style={style}
       disabled={!available}

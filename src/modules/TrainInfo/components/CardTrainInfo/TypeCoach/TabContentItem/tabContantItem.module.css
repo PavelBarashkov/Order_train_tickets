@@ -1,3 +1,7 @@
+.tabContentItem {
+  border-bottom: 1px solid #C4C4C4;
+}
+
 .row {
   margin-left: 0;
   margin-right: 0;
@@ -53,4 +57,19 @@
   display: flex;
   column-gap: 10px;
   margin-top: 10px;
+}
+
+.cost {
+  text-align: end;
+
+  padding: 17px;
+
+  color: #FFA800;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.cost span {
+  color: #928F94;
+  font-weight: 400
 }

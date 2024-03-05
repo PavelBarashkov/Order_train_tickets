@@ -26,8 +26,9 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
   номер вагона +
   цена за место +
   количество мест +
-  обслуживание 
-  схема поезда с свободными и занятыми местами, с функцией выбора места
+  обслуживание +
+  схема поезда с свободными и занятыми местами, с функцией выбора места +
+  сумма билетов
   */
   const toggleOption = (option: string) => {
     setOptions((prevState: any) => ({
@@ -39,7 +40,6 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
   const updateCost = () => {
     let totalCost = 0
 
-    // Если включена опция, добавляем соответствующую стоимость
     if (options.wifi) {
       totalCost += coach.wifi_price
     }
@@ -49,16 +49,48 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
     if (options.food) {
       totalCost += 0
     }
-
-    // Обновляем состояние стоимости
     setCost(totalCost)
   }
 
   useEffect(() => {
     updateCost()
   }, [options])
+
+  let newCoach: any
+  if (direction === "from") {
+    newCoach = coachListFrom.selected.seats.filter(
+      (item: any) => item.coach_id === coach._id,
+    )
+  } else {
+    newCoach = coachListTo.selected.seats.filter(
+      (item: any) => item.coach_id === coach._id,
+    )
+  }
+
+  const calculateTotalPrice = () => {
+    let totalCost = 0
+
+    newCoach.forEach((item: any) => {
+      let itemPrice = item.cost
+
+      if (options.wifi) {
+        itemPrice += coach.wifi_price
+      }
+
+      if (!coach.is_linens_included && options.linens) {
+        itemPrice += coach.linens_price
+      }
+
+      totalCost += itemPrice
+    })
+
+    return totalCost
+  }
+
+  const totalPrice = calculateTotalPrice()
+
   return (
-    <div>
+    <div className={classes.tabContentItem}>
       <Row className={classes.row}>
         <Col className={classes.containerNumberTrain}>
           <div className={classes.trainNumber}>
@@ -119,7 +151,7 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
                       <>
                         {
                           seats.filter(
-                            (el: any) => el.index % 2 === 0 && el.index < 33,
+                            (el: any) => el.index % 2 !== 0 && el.index < 33,
                           ).length
                         }
                       </>
@@ -158,7 +190,7 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
               )}
               {coach.side_price !== 0 && (
                 <div className={classes.colCost}>
-                  {coach.top_price}
+                  {coach.side_price}
                   <span className={classes.spanIcon}> &#8381;</span>
                 </div>
               )}
@@ -219,13 +251,18 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
           </div>
         </Col>
       </Row>
-      <PlanCoach
-        coach={coach}
-        seats={seats}
-        type={coach.class_type}
-        direction={direction}
-      />
-      {direction === "from" && <div>{cost === 0 ? null : <>{cost}</>}</div>}
+      <Row style={{ marginTop: 15 }}>
+        <PlanCoach
+          coach={coach}
+          seats={seats}
+          type={coach.class_type}
+          direction={direction}
+        />
+      </Row>
+      <div className={classes.cost}>
+        {new Intl.NumberFormat("ru-Ru").format(totalPrice)}
+        <span> &#8381;</span>
+      </div>
     </div>
   )
 }

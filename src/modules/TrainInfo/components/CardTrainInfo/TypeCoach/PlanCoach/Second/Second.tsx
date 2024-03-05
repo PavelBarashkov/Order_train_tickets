@@ -38,15 +38,24 @@ export const Second: React.FC<any> = ({ coach, seats, direction }) => {
     { number: 32, type: "top", left: "727" },
   ]
 
+  const planSeatsWitchPrice = planSeats.map((item) => {
+    if (item.number % 2 === 0) {
+      return {...item, price: coach.top_price }
+    } else {
+      return {...item, price: coach.bottom_price}
+    }
+  })
+
   return (
     <div className={classes.plan}>
       <div className={classes.coach_wagon_number}>
         {coach.name.split("-")[1]}
       </div>
 
-      {planSeats.map((item: any) => (
+      {planSeatsWitchPrice.map((item: any) => (
         <Seat
           id={coach._id}
+          coach={coach}
           direction={direction}
           seats={seats}
           number={item.number}
@@ -55,6 +64,7 @@ export const Second: React.FC<any> = ({ coach, seats, direction }) => {
           available={
             seats[item.number - 1] ? seats[item.number - 1].available : false
           }
+          price={item.price}
         />
       ))}
     </div>
