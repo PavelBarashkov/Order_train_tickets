@@ -54,7 +54,6 @@ export const Seat: React.FC<any> = ({
     } else {
       dispatch(setSelectedSeatTo({ id: id, number: number, price: price }))
     }
-    console.log(price)
   }
 
   return (

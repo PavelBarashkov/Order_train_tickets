@@ -61,16 +61,19 @@ const initialState: ITrainInfoSlice = {
 
 export const getCoachFrom = createAsyncThunk(
   "getCoachFrom",
-  async (id: string) => {
-    const response = await getCoachList(id)
+  async (params: any) => {
+    const response = await getCoachList(params)
     return response.data
   },
 )
 
-export const getCoachTo = createAsyncThunk("getCoachTo", async (id: string) => {
-  const response = await getCoachList(id)
-  return response.data
-})
+export const getCoachTo = createAsyncThunk(
+  "getCoachTo",
+  async (params: any) => {
+    const response = await getCoachList(params)
+    return response.data
+  },
+)
 
 export const trainInfoSlice = createSlice({
   name: "listTicketsSlice",
@@ -92,7 +95,7 @@ export const trainInfoSlice = createSlice({
         state.coachListFrom.selected.seats.push({
           coach_id: id,
           seat_number: number,
-          cost: price
+          cost: price,
         })
       }
     },
@@ -109,9 +112,15 @@ export const trainInfoSlice = createSlice({
         state.coachListTo.selected.seats.push({
           coach_id: id,
           seat_number: number,
-          cost: price
+          cost: price,
         })
       }
+    },
+    addToTotalCostFrom: (state, action) => {
+      state.coachListFrom.selected.cost = action.payload
+    },
+    addToTotalCostTo: (state, action) => {
+      state.coachListTo.selected.cost = action.payload
     },
   },
   extraReducers: builder => {
@@ -144,5 +153,11 @@ export const trainInfoSlice = createSlice({
   },
 })
 
-export const { setTicket, setSelectedSeatFrom, setSelectedSeatTo } = trainInfoSlice.actions
+export const {
+  setTicket,
+  setSelectedSeatFrom,
+  setSelectedSeatTo,
+  addToTotalCostFrom,
+  addToTotalCostTo,
+} = trainInfoSlice.actions
 export default trainInfoSlice.reducer

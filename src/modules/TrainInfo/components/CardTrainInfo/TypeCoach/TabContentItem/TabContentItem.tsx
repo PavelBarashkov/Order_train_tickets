@@ -5,56 +5,33 @@ import { Svg } from "../../../../../../assets"
 import { useEffect, useState } from "react"
 import { OptionItem } from "../OptionItem"
 import { PlanCoach } from "../PlanCoach"
-import { useAppSelector } from "../../../../../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../../../../../app/hooks"
 import type { RootState } from "../../../../../../app/store"
+import {
+  addToTotalCostFrom,
+  addToTotalCostTo,
+} from "../../../../slice/trainInfoSlice"
 
 export const TabContentItem: React.FC<any> = ({ item, direction }) => {
   const { coach } = item
   const { seats } = item
+  const dispatch = useAppDispatch()
   const [options, setOptions] = useState<any>({
     wifi: false,
     conditioning: false,
     linens: false,
     food: false,
   })
-  const [cost, setCost] = useState(0)
   const { coachListFrom, coachListTo } = useAppSelector(
     (state: RootState) => state.trainInfo,
   )
-  /*
-  Отображает информацию о вагоне такие как 
-  номер вагона +
-  цена за место +
-  количество мест +
-  обслуживание +
-  схема поезда с свободными и занятыми местами, с функцией выбора места +
-  сумма билетов
-  */
+
   const toggleOption = (option: string) => {
     setOptions((prevState: any) => ({
       ...prevState,
       [option]: !prevState[option],
     }))
   }
-
-  const updateCost = () => {
-    let totalCost = 0
-
-    if (options.wifi) {
-      totalCost += coach.wifi_price
-    }
-    if (!coach.is_linens_included) {
-      totalCost += coach.linens_price
-    }
-    if (options.food) {
-      totalCost += 0
-    }
-    setCost(totalCost)
-  }
-
-  useEffect(() => {
-    updateCost()
-  }, [options])
 
   let newCoach: any
   if (direction === "from") {
@@ -88,6 +65,15 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
   }
 
   const totalPrice = calculateTotalPrice()
+
+  useEffect(() => {
+    if (direction === "from") {
+      dispatch(addToTotalCostFrom(totalPrice))
+    } else {
+      dispatch(addToTotalCostTo(totalPrice))
+    }
+    console.log(totalPrice)
+  }, [totalPrice])
 
   return (
     <div className={classes.tabContentItem}>

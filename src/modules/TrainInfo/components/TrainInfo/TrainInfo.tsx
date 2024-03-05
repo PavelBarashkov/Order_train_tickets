@@ -6,6 +6,7 @@ import type { RootState } from "../../../../app/store"
 import { useEffect } from "react"
 import { getCoachFrom, getCoachTo } from "../../slice/trainInfoSlice"
 import { CardTrainInfo } from "../CardTrainInfo"
+import { useLocation } from "react-router-dom"
 
 export const TrainInfo: React.FC = () => {
   // TODO Сделать компонет билета, прнимает (направление, инфу о билете, инфу овогонах)
@@ -16,13 +17,22 @@ export const TrainInfo: React.FC = () => {
   const { departure } = ticket
   const { arrival } = ticket
   const dispatch = useAppDispatch()
+  const location = useLocation()
 
   useEffect(() => {
     if (arrival) {
-      dispatch(getCoachTo(arrival._id))
+      const params = {
+        id: arrival._id,
+        search: location.search,
+      }
+      dispatch(getCoachTo(params))
     }
-    dispatch(getCoachFrom(departure._id))
-  }, [])
+    const params = {
+      id: departure._id,
+      search: location.search,
+    }
+    dispatch(getCoachFrom(params))
+  }, [location.search])
 
   return (
     <>
