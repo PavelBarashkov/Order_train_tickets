@@ -1,0 +1,10 @@
+.costFilter {
+  padding: 27px 37px;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+
+.costFilterInputLabel {
+  font-size: 30px;
+  font-weight: 400;
+}

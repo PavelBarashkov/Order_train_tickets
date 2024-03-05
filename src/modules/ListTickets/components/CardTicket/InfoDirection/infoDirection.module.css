@@ -1,0 +1,51 @@
+.directionInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.directionInfoItem {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+
+  width: 100%;
+}
+
+.directionInfoAboutCity {
+  width: 155px;
+}
+
+.directionInfoTime {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: rgba(0, 0, 0, 1);
+}
+
+.directionInfoCity {
+  font-size: 16px;
+  font-weight: 400;
+
+  color: rgba(0, 0, 0, 1);
+}
+
+.directionInfoRailwayStation {
+  font-size: 16px;
+  font-weight: 400;
+
+  color: rgba(146, 143, 148, 1);
+}
+
+.timeDirection {
+  font-size: 18px;
+  font-weight: 400;
+
+  color: rgba(196, 196, 196, 1);
+}
+
+.timeDirectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

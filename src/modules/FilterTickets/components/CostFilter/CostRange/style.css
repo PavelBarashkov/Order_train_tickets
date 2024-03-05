@@ -1,0 +1,25 @@
+.css-jx1sa5-MuiSlider-thumb {
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 1) !important;
+    box-shadow: none !important;
+}
+
+.css-jx1sa5-MuiSlider-thumb:hover {
+    box-shadow: none !important;
+}
+
+
+.css-187mznn-MuiSlider-root {
+    color: rgba(255, 168, 0, 1) !important;
+    height: 19px !important;
+}
+
+.css-14pt78w-MuiSlider-rail {
+    border: 1px solid rgba(196, 196, 196, 1);
+    background-color: inherit !important;
+}
+
+.css-1v5z18m {
+    width: 100% !important;
+}

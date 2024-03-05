@@ -1,0 +1,7 @@
+export const MAIN_ROUTE = "/"
+export const TICKET_ROUTE = "order/ticket"
+export const TRAIN_INFO_ROUTER = "order/train/info"
+export const PASSENGER_ROUTER = "order/ticket/passenger"
+export const PAYMENT_ORDER_ROUTE = "order/ticket/payment"
+export const CONFIRMATION_ORDER_ROUTE = "order/ticket/payment/сonfirmation"
+export const SUCCESS_ORDER_ROUTE = "order/tickets/payment/success"

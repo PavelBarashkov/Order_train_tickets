@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.commentsList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  margin-bottom: 137px;
+}
+
+.commentsIndicators {
+  display: flex;
+  column-gap: 10px;
+
+  margin: 0 auto;
+}

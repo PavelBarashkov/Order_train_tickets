@@ -14,7 +14,15 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "paths": {
+      "@/*": ["./src/"],
+      "@pages": ["./src/pages/"],
+      "@components": ["./src/components/"],
+      "@assets": ["./src/assets/"],
+      "@modules": ["./src/modules/"],
+      "@interface": ["./src/interface/"],
+    },
   },
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
 }

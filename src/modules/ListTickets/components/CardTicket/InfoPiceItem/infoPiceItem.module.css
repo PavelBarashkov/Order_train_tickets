@@ -1,0 +1,34 @@
+.InfoPiceItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  cursor: pointer;
+}
+
+.InfoPiceItemCount {
+  font-weight: 500;
+  color: rgba(255, 168, 0, 1);
+}
+
+.InfoPice {
+  color: rgba(146, 143, 148, 1);
+}
+
+.InfoPice span {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(45, 43, 47, 1);
+}
+
+.InfoPiceDiv {
+  display: flex;
+  justify-content: end;
+  column-gap: 4px;
+}
+
+.InfoPiceDiv span {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(45, 43, 47, 1);
+}

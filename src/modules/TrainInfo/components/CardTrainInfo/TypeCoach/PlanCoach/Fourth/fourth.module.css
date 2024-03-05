@@ -1,0 +1,24 @@
+.plan {
+  background: url("@assets/icons/fourthPlan.png");
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  width: 821px;
+  height: 145px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+.coach_wagon_number {
+    position: absolute;
+    top: 0;
+    left: 35px;
+    width: 33px;
+    height: 25px;
+    color: #fff;
+    background-color: #292929;
+    text-align: center;
+  }
+  
