@@ -1,0 +1,28 @@
+.NumberOfWagons {
+  display: flex;
+  column-gap: 10px;
+  align-items: end;
+  justify-content: space-between;
+
+  background-color: #ffa80070;
+}
+
+.NumberOfWagonsList {
+  display: flex;
+  align-items: end;
+  column-gap: 8px;
+}
+
+.active {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: rgba(255, 255, 255, 1);
+}
+
+.inActive {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: rgba(41, 41, 41, 1);
+}

@@ -60,6 +60,7 @@ export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
           <Form>
             {isMain ? (
               <div className={classes.inputGroupMainPage}>
+                <label className={classes.label}>Направление</label>
                 <DirectionInputs
                   direction={{ routeFrom: "routeFrom", routeTo: "routeTo" }}
                   placeholder={{ routeFrom: "Откуда", routeTo: "Куда" }}
@@ -67,6 +68,7 @@ export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
                   options={cities}
                   setField={setFieldValue}
                 />
+                <label className={classes.label}>Дата</label>
                 <DateInputs setField={setFieldValue} />
                 <div className={classes.inputGroupMainPageBtn}>
                   <BtnSubmit />
@@ -75,14 +77,20 @@ export const FormSearchTickets: React.FC<FormSearchTicketsProps> = ({
             ) : (
               <>
                 <div className={classes.inputGroup}>
-                  <DirectionInputs
-                    direction={{ routeFrom: "routeFrom", routeTo: "routeTo" }}
-                    placeholder={{ routeFrom: "Откуда", routeTo: "Куда" }}
-                    name={{ routeFrom: "routeFrom", routeTo: "routeTo" }}
-                    options={cities}
-                    setField={setFieldValue}
-                  />
-                  <DateInputs setField={setFieldValue} />
+                  <div>
+                    <label className={classes.label}>Направление</label>
+                    <DirectionInputs
+                      direction={{ routeFrom: "routeFrom", routeTo: "routeTo" }}
+                      placeholder={{ routeFrom: "Откуда", routeTo: "Куда" }}
+                      name={{ routeFrom: "routeFrom", routeTo: "routeTo" }}
+                      options={cities}
+                      setField={setFieldValue}
+                    />
+                  </div>
+                  <div>
+                    <label className={classes.label}>Дата</label>
+                    <DateInputs setField={setFieldValue} />
+                  </div>
                 </div>
                 <div className={classes.inputGroupBtn}>
                   <BtnSubmit />
