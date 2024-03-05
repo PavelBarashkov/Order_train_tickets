@@ -8,11 +8,32 @@ interface ITrainInfoSlice {
   ticket: any
   coachListFrom: {
     list: []
+    selected: {
+      route_direction_id: string
+      seats: [
+        {
+          coach_id: string
+          seat_number: string
+        },
+      ]
+      cost: number
+    }
+
     loading: boolean
     error: string
   }
   coachListTo: {
     list: []
+    selected: {
+      route_direction_id: string
+      seats: [
+        {
+          coach_id: string
+          seat_number: string
+        },
+      ]
+      cost: number
+    }
     loading: boolean
     error: string
   }
@@ -22,11 +43,31 @@ const initialState: ITrainInfoSlice = {
   ticket: ticketFromLocalStorage,
   coachListFrom: {
     list: [],
+    selected: {
+      route_direction_id: "",
+      seats: [
+        {
+          coach_id: "",
+          seat_number: "",
+        },
+      ],
+      cost: 0,
+    },
     loading: false,
     error: "",
   },
   coachListTo: {
     list: [],
+    selected: {
+      route_direction_id: "",
+      seats: [
+        {
+          coach_id: "",
+          seat_number: "",
+        },
+      ],
+      cost: 0,
+    },
     loading: false,
     error: "",
   },
@@ -51,6 +92,23 @@ export const trainInfoSlice = createSlice({
   reducers: {
     setTicket: (state, action) => {
       state.ticket = action.payload
+    },
+    setSelectedSeatFrom: (state, action) => {
+      const { id, number } = action.payload
+
+      const existingIndex = state.coachListFrom.selected.seats.findIndex(
+        seat => seat.seat_number === number,
+      )
+
+      if (existingIndex !== -1) {
+        state.coachListFrom.selected.seats.splice(existingIndex, 1)
+      } else {
+        state.coachListFrom.selected.seats.push({
+          coach_id: id,
+          seat_number: number,
+        })
+        
+      }
     },
   },
   extraReducers: builder => {
@@ -83,5 +141,5 @@ export const trainInfoSlice = createSlice({
   },
 })
 
-export const { setTicket } = trainInfoSlice.actions
+export const { setTicket, setSelectedSeatFrom } = trainInfoSlice.actions
 export default trainInfoSlice.reducer

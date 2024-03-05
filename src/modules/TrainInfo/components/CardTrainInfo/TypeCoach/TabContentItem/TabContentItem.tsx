@@ -2,10 +2,13 @@ import type React from "react"
 import classes from "./tabContantItem.module.css"
 import { Col, Row } from "react-bootstrap"
 import { Svg } from "../../../../../../assets"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { OptionItem } from "../OptionItem"
+import { PlanCoach } from "../PlanCoach"
+import { useAppSelector } from "../../../../../../app/hooks"
+import type { RootState } from "../../../../../../app/store"
 
-export const TabContentItem: React.FC<any> = ({ item }) => {
+export const TabContentItem: React.FC<any> = ({ item, direction }) => {
   const { coach } = item
   const { seats } = item
   const [options, setOptions] = useState<any>({
@@ -14,6 +17,10 @@ export const TabContentItem: React.FC<any> = ({ item }) => {
     linens: false,
     food: false,
   })
+  const [cost, setCost] = useState(0)
+  const { coachListFrom, coachListTo } = useAppSelector(
+    (state: RootState) => state.trainInfo,
+  )
   /*
   Отображает информацию о вагоне такие как 
   номер вагона +
@@ -29,6 +36,27 @@ export const TabContentItem: React.FC<any> = ({ item }) => {
     }))
   }
 
+  const updateCost = () => {
+    let totalCost = 0
+
+    // Если включена опция, добавляем соответствующую стоимость
+    if (options.wifi) {
+      totalCost += coach.wifi_price
+    }
+    if (!coach.is_linens_included) {
+      totalCost += coach.linens_price
+    }
+    if (options.food) {
+      totalCost += 0
+    }
+
+    // Обновляем состояние стоимости
+    setCost(totalCost)
+  }
+
+  useEffect(() => {
+    updateCost()
+  }, [options])
   return (
     <div>
       <Row className={classes.row}>
@@ -191,6 +219,13 @@ export const TabContentItem: React.FC<any> = ({ item }) => {
           </div>
         </Col>
       </Row>
+      <PlanCoach
+        coach={coach}
+        seats={seats}
+        type={coach.class_type}
+        direction={direction}
+      />
+      {direction === "from" && <div>{cost === 0 ? null : <>{cost}</>}</div>}
     </div>
   )
 }

@@ -1,0 +1,38 @@
+.coach_seat {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  border: 0;
+  background-color: #f2f2f2;
+}
+
+.coach_seat:hover {
+  background-color: #ffa800;
+  cursor: pointer;
+}
+
+.coach_seat__single {
+  font-size: 12px;
+  width: 27px;
+  height: 22px;
+}
+
+.coach_seat__top {
+  width: 27px;
+  height: 28px;
+}
+
+.coach_seat__bottom {
+  width: 38px;
+  height: 24px;
+}
+
+.coach_seat_active {
+  border: 2px solid #ffa800;
+}
+
+.coach_seat:disabled {
+  background-color: #cccccc;
+  color: #ffffff;
+}
