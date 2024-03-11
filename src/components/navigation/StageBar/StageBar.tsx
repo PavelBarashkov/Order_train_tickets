@@ -1,10 +1,27 @@
 import type React from "react"
 import classes from "./stageBar.module.css"
+import { useLocation } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { TICKET_ROUTE } from "../../../pages"
+import { PASSENGER_ROUTER } from "../../../pages/helpers/const/const"
 
 export const StageBar: React.FC = () => {
-  const stage: number = 1
+  const location = useLocation()
+  const [stage, setStage] = useState(1)
   const stages = ["Билеты", "Пассажиры", "Оплата", "Проверка"]
   const active = stage - 1
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case `/${TICKET_ROUTE}`:
+        setStage(1)
+        break
+        case `/${PASSENGER_ROUTER}`:
+        setStage(2)
+        break
+    }
+  }, [location.pathname])
+
   return (
     <div
       className={

@@ -118,9 +118,17 @@ export const trainInfoSlice = createSlice({
     },
     addToTotalCostFrom: (state, action) => {
       state.coachListFrom.selected.cost = action.payload
+      localStorage.setItem(
+        "ticket_from_info",
+        JSON.stringify(state.coachListFrom.selected),
+      )
     },
     addToTotalCostTo: (state, action) => {
       state.coachListTo.selected.cost = action.payload
+      localStorage.setItem(
+        "ticket_to_info",
+        JSON.stringify(state.coachListTo.selected),
+      )
     },
   },
   extraReducers: builder => {
@@ -134,7 +142,6 @@ export const trainInfoSlice = createSlice({
         state.coachListFrom.loading = false
       })
       .addCase(getCoachFrom.rejected, (state, action) => {
-        console.log("Error:", action.payload)
         state.coachListFrom.loading = false
       })
 
@@ -147,7 +154,6 @@ export const trainInfoSlice = createSlice({
         state.coachListTo.loading = false
       })
       .addCase(getCoachTo.rejected, (state, action) => {
-        console.log("Error:", action.payload)
         state.coachListTo.loading = false
       })
   },
