@@ -5,11 +5,10 @@ import { useState } from "react"
 export const PassangerItem: React.FC = () => {
   const [active, setActive] = useState(true)
   const [isChecked, setIsChecked] = useState(true)
-  const [type, isType] = useState('adult')
-  const [documentType, setDocumentType] = useState('passport')
+  const [type, isType] = useState("adult")
+  const [documentType, setDocumentType] = useState("passport")
   const [errorMessage, setErrorMessage] = useState(false)
   const [passenger, setPassenger] = useState(false)
-
 
   const handleShow = () => {
     setActive(prev => !prev)
@@ -160,8 +159,9 @@ export const PassangerItem: React.FC = () => {
           </label>
         </div>
 
-
-        <div className={`${classes.passengerForm_controls} ${classes.passengerForm_section} ${classes.checkbox_control}`}>
+        <div
+          className={`${classes.passengerForm_controls} ${classes.passengerForm_section} ${classes.checkbox_control}`}
+        >
           <input className={classes.passengerForm_checkbox} type="checkbox" />
 
           <p className={classes.passengerForm_checkbox_label}>
@@ -184,7 +184,7 @@ export const PassangerItem: React.FC = () => {
                   Паспорт РФ
                 </option>
 
-                {type !== 'adult' ? (
+                {type !== "adult" ? (
                   <option
                     className={classes.passengerForm_item}
                     value="certificate"
@@ -192,12 +192,12 @@ export const PassangerItem: React.FC = () => {
                     Свидетельство о рождении
                   </option>
                 ) : (
-                  ''
+                  ""
                 )}
               </select>
             </label>
 
-            {documentType === 'passport' && (
+            {documentType === "passport" && (
               <label
                 className={classes.passengerForm_label}
                 // htmlFor={`series${number}`}
@@ -205,21 +205,21 @@ export const PassangerItem: React.FC = () => {
                 Серия
                 <input
                   className={`${classes.passengerForm_field} ${classes.passengerForm_field__document}`}
-                //   id={`series${number}`}
+                  //   id={`series${number}`}
                   type="text"
                   placeholder="_ _ _ _"
                   name="series"
                   maxLength={4}
-                //   maxLength="4"
-                //   value={form.series}
-                //   onChange={handleChange}
+                  //   maxLength="4"
+                  //   value={form.series}
+                  //   onChange={handleChange}
                 />
               </label>
             )}
 
             <label
               className={classes.passengerForm_label}
-            //   htmlFor={`document${number}`}
+              //   htmlFor={`document${number}`}
             >
               Номер
               <input
@@ -227,15 +227,11 @@ export const PassangerItem: React.FC = () => {
                 // id={`document${number}`}
                 type="text"
                 placeholder={
-                  documentType === 'passport'
-                    ? '_ _ _ _ _ _'
-                    : 'Пример, III-ET 545454'
+                  documentType === "passport"
+                    ? "_ _ _ _ _ _"
+                    : "Пример, III-ET 545454"
                 }
-                maxLength={
-                  documentType === 'passport'
-                    ? 6
-                    : 13
-                }
+                maxLength={documentType === "passport" ? 6 : 13}
                 name="document"
                 // value={form.document}
                 // onChange={handleChange}
@@ -244,9 +240,8 @@ export const PassangerItem: React.FC = () => {
           </div>
         </div>
 
-        
         <div
-          className={`${classes.passengerForm_footer} ${passenger ? classes.passengerForm_section_done : ''} ${errorMessage ? classes.warning : ''}`}
+          className={`${classes.passengerForm_footer} ${passenger ? classes.passengerForm_section_done : ""} ${errorMessage ? classes.warning : ""}`}
         >
           {passenger && (
             <div className={classes.passengerForm_massage}>
@@ -270,7 +265,6 @@ export const PassangerItem: React.FC = () => {
             </button>
           )}
         </div>
-
       </div>
     </div>
   )

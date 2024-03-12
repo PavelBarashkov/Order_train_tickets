@@ -4,7 +4,11 @@ import classes from "./trainInfo.module.css"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import type { RootState } from "../../../../app/store"
 import { useEffect } from "react"
-import { getCoachFrom, getCoachTo } from "../../slice/trainInfoSlice"
+import {
+  clearSelected,
+  getCoachFrom,
+  getCoachTo,
+} from "../../slice/trainInfoSlice"
 import { CardTrainInfo } from "../CardTrainInfo"
 import { useLocation, useNavigate } from "react-router-dom"
 import { PASSENGER_ROUTER } from "../../../../pages/helpers/const/const"
@@ -55,8 +59,13 @@ export const TrainInfo: React.FC = () => {
           />
         )}
       </div>
-      <div className={classes.btnContainer}> 
-        <button onClick={() => navigate(`/${PASSENGER_ROUTER}`)} className={classes.btn}>ДАЛЕЕ</button>
+      <div className={classes.btnContainer}>
+        <button
+          onClick={() => navigate(`/${PASSENGER_ROUTER}`)}
+          className={classes.btn}
+        >
+          ДАЛЕЕ
+        </button>
       </div>
     </>
   )

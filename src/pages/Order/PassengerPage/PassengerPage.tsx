@@ -14,10 +14,7 @@ export const PassengerPage: React.FC = () => {
       stageBar={<Navigation.StageBar />}
     />
     <PageContainerWithSidBar asideBar={<PassengerRegistration.AsideBar />}>
-      <PassangerItem/>
-      <PassangerItem/>
-      <PassangerItem/>
-
+      <PassengerRegistration.PassengerRegistration/>
     </PageContainerWithSidBar>
   </>
   )

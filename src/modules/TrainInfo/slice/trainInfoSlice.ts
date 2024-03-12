@@ -4,6 +4,16 @@ import { getCoachList } from "../API/getCoachList"
 const storedTicket = localStorage.getItem("train_info")
 const ticketFromLocalStorage = storedTicket ? JSON.parse(storedTicket) : {}
 
+const selectedFrom = localStorage.getItem("ticket_from_info")
+const selectedFromLocalStorage = selectedFrom
+  ? JSON.parse(selectedFrom)
+  : { route_direction_id: "", seats: [], cost: 0 }
+
+  const selectedTo = localStorage.getItem("ticket_to_info")
+const selectedToLocalStorage = selectedTo
+  ? JSON.parse(selectedTo)
+  : { route_direction_id: "", seats: [], cost: 0 }
+
 interface Seat {
   coach_id: string
   seat_number: string
@@ -39,21 +49,13 @@ const initialState: ITrainInfoSlice = {
   ticket: ticketFromLocalStorage,
   coachListFrom: {
     list: [],
-    selected: {
-      route_direction_id: "",
-      seats: [],
-      cost: 0,
-    },
+    selected: selectedFromLocalStorage,
     loading: false,
     error: "",
   },
   coachListTo: {
     list: [],
-    selected: {
-      route_direction_id: "",
-      seats: [],
-      cost: 0,
-    },
+    selected: selectedToLocalStorage,
     loading: false,
     error: "",
   },
@@ -130,6 +132,10 @@ export const trainInfoSlice = createSlice({
         JSON.stringify(state.coachListTo.selected),
       )
     },
+    clearSelected: (state) => {
+      state.coachListFrom.selected = { route_direction_id: "", seats: [], cost: 0 }
+      state.coachListTo.selected = { route_direction_id: "", seats: [], cost: 0 }
+    }
   },
   extraReducers: builder => {
     builder
@@ -165,5 +171,6 @@ export const {
   setSelectedSeatTo,
   addToTotalCostFrom,
   addToTotalCostTo,
+  clearSelected
 } = trainInfoSlice.actions
 export default trainInfoSlice.reducer
