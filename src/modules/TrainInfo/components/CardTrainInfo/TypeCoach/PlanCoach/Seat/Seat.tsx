@@ -16,6 +16,7 @@ export const Seat: React.FC<any> = ({
   direction,
   seats,
   price,
+  id_route
 }) => {
   const dispatch = useAppDispatch()
   const { coachListFrom, coachListTo } = useAppSelector(
@@ -50,10 +51,11 @@ export const Seat: React.FC<any> = ({
 
   const handleBtnSeat = () => {
     if (direction === "from") {
-      dispatch(setSelectedSeatFrom({ id: id, number: number, price: price }))
+      dispatch(setSelectedSeatFrom({ id: id, number: number, price: price, id_route: id_route }))
     } else {
-      dispatch(setSelectedSeatTo({ id: id, number: number, price: price }))
+      dispatch(setSelectedSeatTo({ id: id, number: number, price: price, id_route: id_route }))
     }
+    console.log(id_route)
   }
 
   return (

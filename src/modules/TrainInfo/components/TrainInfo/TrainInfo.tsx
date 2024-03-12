@@ -61,7 +61,17 @@ export const TrainInfo: React.FC = () => {
       </div>
       <div className={classes.btnContainer}>
         <button
-          onClick={() => navigate(`/${PASSENGER_ROUTER}`)}
+          onClick={() => {
+            navigate(`/${PASSENGER_ROUTER}`)
+            localStorage.setItem(
+              "totalCount",
+              JSON.stringify(
+                ticket.arrival
+                  ? coachListFrom.selected.cost + coachListTo.selected.cost
+                  : coachListFrom.selected.cost,
+              ),
+            )
+          }}
           className={classes.btn}
         >
           ДАЛЕЕ

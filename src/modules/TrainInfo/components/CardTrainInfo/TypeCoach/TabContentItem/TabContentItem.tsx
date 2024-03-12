@@ -12,7 +12,7 @@ import {
   addToTotalCostTo,
 } from "../../../../slice/trainInfoSlice"
 
-export const TabContentItem: React.FC<any> = ({ item, direction }) => {
+export const TabContentItem: React.FC<any> = ({ item, direction, id_route }) => {
   const { coach } = item
   const { seats } = item
   const dispatch = useAppDispatch()
@@ -24,7 +24,7 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
   })
   const { coachListFrom, coachListTo } = useAppSelector(
     (state: RootState) => state.trainInfo,
-  )
+    )
 
   const toggleOption = (option: string) => {
     setOptions((prevState: any) => ({
@@ -74,7 +74,6 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
     }
     console.log(totalPrice)
   }, [totalPrice])
-
   return (
     <div className={classes.tabContentItem}>
       <Row className={classes.row}>
@@ -243,6 +242,7 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
           seats={seats}
           type={coach.class_type}
           direction={direction}
+          id_route={id_route}
         />
       </Row>
       <div className={classes.cost}>

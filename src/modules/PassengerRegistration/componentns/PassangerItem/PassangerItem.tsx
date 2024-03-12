@@ -2,7 +2,7 @@ import type React from "react"
 import classes from "./passangerItem.module.css"
 import { useState } from "react"
 
-export const PassangerItem: React.FC = () => {
+export const PassangerItem: React.FC<any> = ({numberPassenger}) => {
   const [active, setActive] = useState(true)
   const [isChecked, setIsChecked] = useState(true)
   const [type, isType] = useState("adult")
@@ -26,7 +26,7 @@ export const PassangerItem: React.FC = () => {
             className={`${classes.passenger_toggle} ${active ? classes.hide : classes.show}`}
             onClick={handleShow}
           />
-          Пассажир 1
+          Пассажир {numberPassenger}
         </h4>
 
         <button type="button" className={classes.passenger_delete__button} />

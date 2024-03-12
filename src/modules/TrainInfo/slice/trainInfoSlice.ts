@@ -7,14 +7,15 @@ const ticketFromLocalStorage = storedTicket ? JSON.parse(storedTicket) : {}
 const selectedFrom = localStorage.getItem("ticket_from_info")
 const selectedFromLocalStorage = selectedFrom
   ? JSON.parse(selectedFrom)
-  : { route_direction_id: "", seats: [], cost: 0 }
+  : {  seats: [], cost: 0 }
 
-  const selectedTo = localStorage.getItem("ticket_to_info")
+const selectedTo = localStorage.getItem("ticket_to_info")
 const selectedToLocalStorage = selectedTo
   ? JSON.parse(selectedTo)
-  : { route_direction_id: "", seats: [], cost: 0 }
+  : { seats: [], cost: 0 }
 
 interface Seat {
+  route_direction_id: string
   coach_id: string
   seat_number: string
   cost: number
@@ -25,7 +26,6 @@ interface ITrainInfoSlice {
   coachListFrom: {
     list: []
     selected: {
-      route_direction_id: string
       seats: Seat[]
       cost: number
     }
@@ -36,7 +36,6 @@ interface ITrainInfoSlice {
   coachListTo: {
     list: []
     selected: {
-      route_direction_id: string
       seats: Seat[]
       cost: number
     }
@@ -85,7 +84,7 @@ export const trainInfoSlice = createSlice({
       state.ticket = action.payload
     },
     setSelectedSeatFrom: (state, action) => {
-      const { id, number, price } = action.payload
+      const { id, number, price, id_route } = action.payload
 
       const existingIndex = state.coachListFrom.selected.seats.findIndex(
         seat => seat.seat_number === number && seat.coach_id === id,
@@ -95,6 +94,7 @@ export const trainInfoSlice = createSlice({
         state.coachListFrom.selected.seats.splice(existingIndex, 1)
       } else {
         state.coachListFrom.selected.seats.push({
+          route_direction_id: id_route,
           coach_id: id,
           seat_number: number,
           cost: price,
@@ -102,7 +102,7 @@ export const trainInfoSlice = createSlice({
       }
     },
     setSelectedSeatTo: (state, action) => {
-      const { id, number, price } = action.payload
+      const { id, number, price, id_route } = action.payload
 
       const existingIndex = state.coachListTo.selected.seats.findIndex(
         seat => seat.seat_number === number && seat.coach_id === id,
@@ -112,6 +112,7 @@ export const trainInfoSlice = createSlice({
         state.coachListTo.selected.seats.splice(existingIndex, 1)
       } else {
         state.coachListTo.selected.seats.push({
+          route_direction_id: id_route,
           coach_id: id,
           seat_number: number,
           cost: price,
@@ -132,10 +133,16 @@ export const trainInfoSlice = createSlice({
         JSON.stringify(state.coachListTo.selected),
       )
     },
-    clearSelected: (state) => {
-      state.coachListFrom.selected = { route_direction_id: "", seats: [], cost: 0 }
-      state.coachListTo.selected = { route_direction_id: "", seats: [], cost: 0 }
-    }
+    clearSelected: state => {
+      state.coachListFrom.selected = {
+        seats: [],
+        cost: 0,
+      }
+      state.coachListTo.selected = {
+        seats: [],
+        cost: 0,
+      }
+    },
   },
   extraReducers: builder => {
     builder
@@ -171,6 +178,6 @@ export const {
   setSelectedSeatTo,
   addToTotalCostFrom,
   addToTotalCostTo,
-  clearSelected
+  clearSelected,
 } = trainInfoSlice.actions
 export default trainInfoSlice.reducer
