@@ -15,7 +15,6 @@ export const PaymentPage: React.FC = () => {
     />
     <PageContainerWithSidBar asideBar={<PassengerRegistration.AsideBar />}>
       <PayForm/>
-
     </PageContainerWithSidBar>
   </>
   )
