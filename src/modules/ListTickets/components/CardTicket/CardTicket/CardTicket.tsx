@@ -15,7 +15,7 @@ export const CardTicket: React.FC<any> = ({ ticket }) => {
         <InfoDirection ticket={ticket} />
       </Col>
       <Col md={4} className={classes.cardInfo}>
-        <InfoPricing ticket={ticket} />
+        <InfoPricing ticket={ticket}/>
       </Col>
     </Row>
   )

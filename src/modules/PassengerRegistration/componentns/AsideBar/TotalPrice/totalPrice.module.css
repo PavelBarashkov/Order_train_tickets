@@ -1,0 +1,26 @@
+.container {
+  padding: 27px 13px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.containerPreview {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-size: 35px;
+}
+
+.containerPreviewDirectionTitle {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.containerPreviewDirectionNumber {
+  color: #FFA800;
+}
+
+.containerPreviewDirectionNumber span{
+  color: #FFFFFF;
+}

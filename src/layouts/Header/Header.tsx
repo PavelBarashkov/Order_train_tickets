@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import { MAIN_ROUTE } from "../../pages"
 import classes from "./header.module.css"
 import { Col, Container, Row } from "react-bootstrap"
+import { SUCCESS_ORDER_ROUTE } from "../../pages/helpers/const/const"
 
 interface IHeaderProps {
   navBar: React.ReactNode
@@ -21,6 +22,7 @@ export const Header: React.FC<IHeaderProps> = ({
 }) => {
   const location = useLocation()
   const isMain = location.pathname === MAIN_ROUTE
+  const isSuccess = location.pathname === `/${SUCCESS_ORDER_ROUTE}`
 
   if (isMain) {
     return (
@@ -36,6 +38,21 @@ export const Header: React.FC<IHeaderProps> = ({
           </Container>
         </div>
       </header>
+    )
+  }
+
+  if (isSuccess) {
+    return (
+      <header className={`${classes.header} ${classes.successPage}`}>
+      {logo}
+      {navBar}
+      <div className={classes.headerMainSection}>
+        <Container>
+          <Row className="align-items-center" style={{height: 800}}>
+          </Row>
+        </Container>
+      </div>
+    </header>
     )
   }
 

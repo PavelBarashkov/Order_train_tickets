@@ -1,0 +1,14 @@
+.asideBar {
+    background-color: #3E3C41;
+
+    color: #E5E5E5;
+}
+
+.asideBarHeaderTitle {
+    padding: 35px 43px;
+    
+    font-size: 30px;
+    font-weight: 500;
+
+    border-bottom: 1px solid #E5E5E5;
+}

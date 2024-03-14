@@ -1,15 +1,16 @@
 import type React from "react"
 import { Header, PageContainerWithSidBar } from "../../../layouts"
 import { Loader, Logo, Navigation } from "@components"
-import { FilterTickets, FormSearchTickets, ListTickets } from "@modules"
+import { FilterTickets, FormSearchTickets, LastTickets, ListTickets } from "@modules"
 import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import type { RootState } from "../../../app/store"
 import { useLocation, useSearchParams } from "react-router-dom"
 import { useEffect } from "react"
 import { getTicket } from "../../../modules/ListTickets/slice/listTicketsSlice"
+import { getLastTickets } from "../../../modules/LastTickets/slice/lastTicketsSlice"
 
 export const TicketPage: React.FC = () => {
-  const { loading } = useAppSelector((state: RootState) => state.listTickets)
+  const { loading, error } = useAppSelector((state: RootState) => state.listTickets)
   const location = useLocation()
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -17,6 +18,7 @@ export const TicketPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(getTicket(location.search))
+    dispatch(getLastTickets())
   }, [offset])
 
   return (
@@ -30,10 +32,16 @@ export const TicketPage: React.FC = () => {
       {loading ? (
         <Loader />
       ) : (
-        <PageContainerWithSidBar asideBar={<FilterTickets.FilterTickets />}>
-          <ListTickets.ListTickets />
-        </PageContainerWithSidBar>
+        <>
+          {error ? (
+            <div>{error}</div>
+          ) : (
+            <PageContainerWithSidBar asideBar={<FilterTickets.FilterTickets />} lastTickets={<LastTickets.LastTickets/>}>
+              <ListTickets.ListTickets />
+            </PageContainerWithSidBar>
+          )}
+        </>
       )}
     </>
-  )
+  );
 }

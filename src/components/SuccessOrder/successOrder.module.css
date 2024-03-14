@@ -1,0 +1,143 @@
+.success_order_wrapper {
+  position: relative;
+  top: -310px;
+  height: 1080px;
+}
+
+.success_order_title {
+  font-size: 72px;
+  line-height: 84px;
+  color: #ffffff;
+  margin-left: calc(50% - 702px);
+  margin-bottom: 35px;
+}
+
+.success_order {
+  position: absolute;
+  width: 1404px;
+  left: calc(50% - 702px);
+  background: #ffffff;
+  border: 1px solid #c4c4c4;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.success_order__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 148px;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.success_order__title {
+  font-size: 36px;
+  line-height: 42px;
+  color: #000000;
+  font-weight: 700;
+  margin: 0 0 0 82px;
+}
+
+.success_order__price {
+  font-size: 36px;
+  line-height: 42px;
+  color: #928f94;
+  margin-right: 82px;
+}
+
+.success_order__value {
+  font-size: 36px;
+  color: #3e3c41;
+}
+
+.success_order__instructions {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 300px;
+  background-color: #f4f3f6;
+}
+
+.success_order__instruction {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  line-height: 21px;
+  color: #292929;
+}
+
+.success_order__instruction_icon {
+  margin-bottom: 11px;
+}
+
+.success_order__instruction_text {
+  font-size: 18px;
+  color: #292929;
+}
+
+.success-order__instruction_text strong {
+  color: inherit;
+}
+
+.success_order__message {
+  padding: 95px 205px 129px;
+}
+
+.success_order__message_title {
+  font-size: 36px;
+  line-height: 42px;
+  color: #292929;
+  margin-bottom: 51px;
+}
+
+.success_order__message_text {
+  margin-bottom: 85px;
+  font-size: 24px;
+  line-height: 35px;
+  color: #292929;
+}
+
+.success_order__footer {
+  background: rgba(255, 168, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 57px;
+}
+
+.success_order__footer p {
+  margin: 0;
+}
+
+.success_order__footer_form {
+  align-items: center;
+  display: flex;
+}
+
+.success_order__footer_title {
+  font-size: 24px;
+  line-height: 28px;
+  color: #292929;
+}
+
+.success_order__footer_icons {
+  margin-left: 30px;
+}
+
+.success_order__footer_button {
+    height: 60px;
+    padding: 0 13px 0 13px;
+    font-size: 24px;
+    text-transform: uppercase;
+    background: rgba(255, 168, 0, 0.88);
+    border-radius: 5px;
+    border: 1px solid #3e3c41;
+}
+
+.success_order__footer_button:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .success_order__footer_button:active {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    background: #e5e5e5;
+    color: #ffa800;
+  }

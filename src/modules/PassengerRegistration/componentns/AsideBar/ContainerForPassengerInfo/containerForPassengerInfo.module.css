@@ -1,0 +1,64 @@
+.container {
+  padding: 27px 13px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+
+.containerPreview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.filterPreview img {
+  width: 32px;
+  height: 26px;
+}
+
+.containerPreviewDirection {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.containerPreviewDirectionTitle {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.containerPreviewBtn {
+  width: 20px;
+  height: 20px;
+
+  background: url(../../../../../assets/icons/btn.png);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  border: none;
+}
+
+
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+  
+    width: 100%;
+    height: 0;
+  
+    padding-top: 25px;
+  
+    padding: 0px 20px;
+  
+    overflow: hidden;
+  
+    transition: height 0.3s ease;
+  }
+  
+  .active {
+    height: 150px;
+  }

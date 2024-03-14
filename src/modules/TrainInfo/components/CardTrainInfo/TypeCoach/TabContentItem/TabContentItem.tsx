@@ -12,16 +12,22 @@ import {
   addToTotalCostTo,
 } from "../../../../slice/trainInfoSlice"
 
-export const TabContentItem: React.FC<any> = ({ item, direction }) => {
+export const TabContentItem: React.FC<any> = ({
+  item,
+  direction,
+  id_route,
+}) => {
   const { coach } = item
   const { seats } = item
   const dispatch = useAppDispatch()
+
   const [options, setOptions] = useState<any>({
     wifi: false,
     conditioning: false,
     linens: false,
     food: false,
   })
+
   const { coachListFrom, coachListTo } = useAppSelector(
     (state: RootState) => state.trainInfo,
   )
@@ -33,47 +39,48 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
     }))
   }
 
-  let newCoach: any
-  if (direction === "from") {
-    newCoach = coachListFrom.selected.seats.filter(
-      (item: any) => item.coach_id === coach._id,
-    )
-  } else {
-    newCoach = coachListTo.selected.seats.filter(
-      (item: any) => item.coach_id === coach._id,
-    )
-  }
-
-  const calculateTotalPrice = () => {
-    let totalCost = 0
-
-    newCoach.forEach((item: any) => {
-      let itemPrice = item.cost
-
-      if (options.wifi) {
-        itemPrice += coach.wifi_price
+  const costTicket = (arr: any, id: any) => {
+    let sum = 0
+    arr.forEach((item: any) => {
+      if (item.coach_id === id) {
+        sum += item.cost
       }
-
-      if (!coach.is_linens_included && options.linens) {
-        itemPrice += coach.linens_price
-      }
-
-      totalCost += itemPrice
     })
+    return sum
+  }
+  let sumOption = 0
+  let totalCost =
+    direction === "from"
+      ? costTicket(coachListFrom.selected.seats, coach._id)
+      : costTicket(coachListTo.selected.seats, coach._id)
 
-    return totalCost
+  if (options.wifi) {
+    if (direction === "from ") {
+      sumOption += coach.wifi_price * coachListFrom.selected.seats.length
+      totalCost += coach.wifi_price * coachListFrom.selected.seats.length
+    } else {
+      sumOption += coach.wifi_price * coachListTo.selected.seats.length
+      totalCost += coach.wifi_price * coachListTo.selected.seats.length
+    }
   }
 
-  const totalPrice = calculateTotalPrice()
+  if (!coach.is_linens_included && options.linens) {
+    if (direction === "from") {
+      sumOption += coach.linens_price * coachListFrom.selected.seats.length
+      totalCost += coach.linens_price * coachListFrom.selected.seats.length
+    } else {
+      sumOption += coach.linens_price * coachListTo.selected.seats.length
+      totalCost += coach.linens_price * coachListTo.selected.seats.length
+    }
+  }
 
   useEffect(() => {
     if (direction === "from") {
-      dispatch(addToTotalCostFrom(totalPrice))
+      dispatch(addToTotalCostFrom({ option: sumOption }))
     } else {
-      dispatch(addToTotalCostTo(totalPrice))
+      dispatch(addToTotalCostTo({ option: sumOption }))
     }
-    console.log(totalPrice)
-  }, [totalPrice])
+  }, [sumOption])
 
   return (
     <div className={classes.tabContentItem}>
@@ -243,10 +250,11 @@ export const TabContentItem: React.FC<any> = ({ item, direction }) => {
           seats={seats}
           type={coach.class_type}
           direction={direction}
+          id_route={id_route}
         />
       </Row>
       <div className={classes.cost}>
-        {new Intl.NumberFormat("ru-Ru").format(totalPrice)}
+        {new Intl.NumberFormat("ru-Ru").format(totalCost)}
         <span> &#8381;</span>
       </div>
     </div>
