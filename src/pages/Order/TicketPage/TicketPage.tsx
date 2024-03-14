@@ -9,7 +9,7 @@ import { useEffect } from "react"
 import { getTicket } from "../../../modules/ListTickets/slice/listTicketsSlice"
 
 export const TicketPage: React.FC = () => {
-  const { loading } = useAppSelector((state: RootState) => state.listTickets)
+  const { loading, error } = useAppSelector((state: RootState) => state.listTickets)
   const location = useLocation()
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -30,10 +30,16 @@ export const TicketPage: React.FC = () => {
       {loading ? (
         <Loader />
       ) : (
-        <PageContainerWithSidBar asideBar={<FilterTickets.FilterTickets />}>
-          <ListTickets.ListTickets />
-        </PageContainerWithSidBar>
+        <>
+          {error ? (
+            <div>{error}</div>
+          ) : (
+            <PageContainerWithSidBar asideBar={<FilterTickets.FilterTickets />}>
+              <ListTickets.ListTickets />
+            </PageContainerWithSidBar>
+          )}
+        </>
       )}
     </>
-  )
+  );
 }

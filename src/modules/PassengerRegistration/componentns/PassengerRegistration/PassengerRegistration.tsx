@@ -1,7 +1,10 @@
 import type React from "react"
 import { PassangerItem } from "../PassangerItem"
+import { useAppDispatch } from "../../../../app/hooks"
+import { setUser } from "../../slice/passengerSlice"
 
 export const PassengerRegistration: React.FC = () => {
+  const dispatch = useAppDispatch()
   const countTicketsFromLocal = localStorage.getItem("ticket_from_info")
   const countTicketsFrom = countTicketsFromLocal
     ? JSON.parse(countTicketsFromLocal)
@@ -26,11 +29,13 @@ export const PassengerRegistration: React.FC = () => {
       users.push({ departure: fromTicket, arrival: toTicket })
     }
     JSON.stringify(localStorage.setItem("totalCount", countTicketsFrom.cost + countTicketsTo.cost))
+    dispatch(setUser(users))
   } else {
     for (const user of countTicketsFrom.seats) {
       users.push({ departure: user })
     }
     JSON.stringify(localStorage.setItem("totalCount", countTicketsFrom.cost))
+    dispatch(setUser(users))
 
   }
 
@@ -40,7 +45,7 @@ export const PassengerRegistration: React.FC = () => {
     return (
       <>
         {users.map((item: any, index: number) => (
-          <PassangerItem key={item.departure.seat_number} numberPassenger={index + 1}/>
+          <PassangerItem key={item.departure.seat_number} numberPassenger={index + 1} index={index}/>
         ))}
       </>
     )

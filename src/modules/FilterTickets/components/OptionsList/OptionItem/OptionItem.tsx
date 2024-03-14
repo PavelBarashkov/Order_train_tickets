@@ -23,7 +23,7 @@ export const OptionItem: React.FC<OptionItemProps> = ({ item }) => {
     const checked = e.target.checked
     localStorage.removeItem("ticket_from_info")
     localStorage.removeItem("ticket_to_info")
-    dispatch(clearSelected())
+    // dispatch(clearSelected())
     if (checked) {
       searchParams.set(item.value, "true")
       setSearchParams(searchParams)

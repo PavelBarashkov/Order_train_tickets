@@ -164,7 +164,7 @@
 }
 
 .passengerForm_radio_field {
-  display: none;
+display: none;
 }
 
 .passengerForm_radio_label {
@@ -315,4 +315,8 @@
   background-color: #ffa800;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   color: #292929;
+}
+
+.error {
+  color: red !important;
 }

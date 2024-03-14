@@ -19,6 +19,8 @@ interface Seat {
   coach_id: string
   seat_number: string
   cost: number
+  is_child: boolean,
+  include_children_seat: boolean
 }
 
 interface ITrainInfoSlice {
@@ -77,7 +79,7 @@ export const getCoachTo = createAsyncThunk(
 )
 
 export const trainInfoSlice = createSlice({
-  name: "listTicketsSlice",
+  name: "trainInfoSlice",
   initialState,
   reducers: {
     setTicket: (state, action) => {
@@ -98,6 +100,8 @@ export const trainInfoSlice = createSlice({
           coach_id: id,
           seat_number: number,
           cost: price,
+          is_child: false,
+          include_children_seat: false
         })
       }
     },
@@ -116,6 +120,8 @@ export const trainInfoSlice = createSlice({
           coach_id: id,
           seat_number: number,
           cost: price,
+          is_child: false,
+          include_children_seat: false
         })
       }
     },

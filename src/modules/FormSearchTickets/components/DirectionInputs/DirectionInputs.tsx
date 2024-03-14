@@ -46,6 +46,12 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
     const newRouteFrom = routeTo
     setField(direction.routeFrom, newRouteFrom)
     setField(direction.routeTo, newRouteTo)
+    console.log(newRouteFrom)
+    searchParams.set("routeFromCity", newRouteFrom.name)
+    searchParams.set("from_city_id", newRouteFrom._id)
+    searchParams.set("routeToCity", newRouteTo.name)
+    searchParams.set("to_city_id", newRouteTo._id)
+    setSearchParams(searchParams)
   }
 
   const handlerAutocomplete = (
@@ -102,24 +108,31 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
   }
 
   useEffect(() => {
-    const routeFromCity = searchParams.get("routeFromCity") || ""
-    const from_city_id = searchParams.get("from_city_id") || ""
-    const routeToCity = searchParams.get("routeToCity") || ""
-    const to_city_id = searchParams.get("to_city_id") || ""
+    const routeFromCity = searchParams.get("routeFromCity")
+    const from_city_id = searchParams.get("from_city_id")
+    const routeToCity = searchParams.get("routeToCity")
+    const to_city_id = searchParams.get("to_city_id")
 
-    const valueFrom = {
-      _id: from_city_id,
-      name: routeFromCity,
+ 
+    if (routeFromCity && from_city_id) {
+      const valueFrom = {
+        _id: from_city_id,
+        name: routeFromCity,
+      }
+      dispatch(setCity({ direction: "routeFrom", value: valueFrom }))
+      setField(direction.routeFrom, valueFrom)
     }
-    const valueTo = {
-      _id: to_city_id,
-      name: routeToCity,
-    }
-    dispatch(setCity({ direction: "routeFrom", value: valueFrom }))
-    setField(direction.routeFrom, valueFrom)
-
+ 
+    if (routeToCity && to_city_id) {
+      const valueTo = {
+        _id: to_city_id,
+        name: routeToCity,
+      }
+      
     dispatch(setCity({ direction: "routeTo", value: valueTo }))
     setField(direction.routeTo, valueTo)
+    }
+
   }, [])
 
   return (
