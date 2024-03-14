@@ -4,6 +4,7 @@ import {
   ConfirmationOrder,
   FilterTickets,
   FormSearchTickets,
+  LastTickets,
   ListTickets,
 } from "@modules"
 import { trainInfoSlice } from "../modules/TrainInfo"
@@ -17,6 +18,7 @@ export const store = configureStore({
     trainInfo: trainInfoSlice,
     passengerRegistration: passengerSlice,
     payOrder: ConfirmationOrder.paySlice,
+    lastTickets: LastTickets.lastTicketsSlice
   },
 })
 

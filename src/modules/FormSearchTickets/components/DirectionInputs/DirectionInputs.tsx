@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { getCity, setCity, swapRoutes } from "../../slice/searchTickets"
 import { InputsField } from "@components"
 import type { ChangeEvent } from "react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useLocation, useSearchParams } from "react-router-dom"
 import { MAIN_ROUTE } from "@pages"
 
@@ -37,6 +37,7 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
   const location = useLocation()
+  const [inputValue, setInputValue] = useState<string>("")
   const { routeFrom, routeTo } = useAppSelector(
     (state: any) => state.searchTickets,
   )
@@ -103,17 +104,16 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
     }
 
     if (e.target.value.trim() !== "") {
-      dispatch(getCity(e.target.value))
+      setInputValue(e.target.value)
     }
   }
-
+  
   useEffect(() => {
     const routeFromCity = searchParams.get("routeFromCity")
     const from_city_id = searchParams.get("from_city_id")
     const routeToCity = searchParams.get("routeToCity")
     const to_city_id = searchParams.get("to_city_id")
-
- 
+    
     if (routeFromCity && from_city_id) {
       const valueFrom = {
         _id: from_city_id,
@@ -122,18 +122,28 @@ export const DirectionInputs: React.FC<IDirectionInputsProps> = ({
       dispatch(setCity({ direction: "routeFrom", value: valueFrom }))
       setField(direction.routeFrom, valueFrom)
     }
- 
+    
     if (routeToCity && to_city_id) {
       const valueTo = {
         _id: to_city_id,
         name: routeToCity,
       }
       
-    dispatch(setCity({ direction: "routeTo", value: valueTo }))
-    setField(direction.routeTo, valueTo)
+      dispatch(setCity({ direction: "routeTo", value: valueTo }))
+      setField(direction.routeTo, valueTo)
     }
-
   }, [])
+
+
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      if (inputValue.trim() !== "") {
+        dispatch(getCity(inputValue))
+      }
+    }, 1000)
+
+    return () => clearTimeout(debounceTimeout)
+  }, [inputValue])
 
   return (
     <div className={classes.inputs}>

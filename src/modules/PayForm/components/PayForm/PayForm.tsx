@@ -8,16 +8,18 @@ import { CONFIRMATION_ORDER_ROUTE } from "../../../../pages/helpers/const/const"
 
 export const PayForm: React.FC = () => {
   const navigate = useNavigate();
+  const userPayLocal = localStorage.getItem("formPay")
+  const userPay = userPayLocal ? JSON.parse(userPayLocal) : {}
 
   return (
     <Formik
       initialValues={{
-        last_name: "",
-        first_name: "",
-        patronymic: "",
-        phone: "",
-        email: "",
-        payment_method: "",
+        last_name: userPay ? userPay.last_name : '',
+        first_name: userPay ? userPay.last_name : '',
+        patronymic: userPay ? userPay.patronymic : '',
+        phone: userPay ? userPay.phone : '',
+        email: userPay ? userPay.email : '',
+        payment_method: userPay ? userPay.payment_method : '',
       }}
       validationSchema={Yup.object().shape({
         last_name: Yup.string()

@@ -6,7 +6,11 @@ import * as Yup from "yup"
 import { useAppDispatch } from "../../../../app/hooks"
 import { updateUser } from "../../slice/passengerSlice"
 
-export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
+export const PassangerItem: React.FC<any> = ({
+  numberPassenger,
+  index,
+  user,
+}) => {
   const [active, setActive] = useState(true)
   const [passenger, setPassenger] = useState(false)
   const dispatch = useAppDispatch()
@@ -18,16 +22,16 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
     <>
       <Formik
         initialValues={{
-          age: "adult",
-          surname: "",
-          first_name: "",
-          middleName: "",
-          sex: "man",
-          dateOfBirth: undefined,
+          age: user === null ? "adult" : user.is_adult ? "adult" : "children",
+          surname: user === null ? "" : user.last_name,
+          first_name: user === null ? "" : user.first_name,
+          middleName: user === null ? "" : user.patronymic,
+          sex: user === null ? "man" : user.gender ? "man" : "woman",
+          dateOfBirth: user === null ? undefined : user.birthday,
           limitedMobility: false,
-          documentType: "passport",
+          documentType: user === null ? "passport" : user.document_type,
           series: "",
-          numberDocument: undefined,
+          numberDocument: user === null ? undefined : user.document_data,
         }}
         validationSchema={Yup.object().shape({
           age: Yup.string(),
@@ -66,7 +70,7 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
         }}
       >
         {({ errors, touched, values }) => (
-          <Form>  
+          <Form>
             <div className={classes.card}>
               <div
                 className={`${classes.passenger_header} ${active ? classes.active_form : ""}`}

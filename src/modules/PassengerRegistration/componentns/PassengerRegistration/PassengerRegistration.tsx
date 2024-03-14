@@ -14,6 +14,9 @@ export const PassengerRegistration: React.FC = () => {
 
   const isValid = departure.seats.every((seat: any) => "person_info" in seat)
 
+
+
+
   if (departure.seats.length > 0) {
     return (
       <>
@@ -22,6 +25,7 @@ export const PassengerRegistration: React.FC = () => {
             key={index + 1}
             numberPassenger={index + 1}
             index={index}
+            user={item.person_info ? item.person_info : null}
           />
         ))}
         <div className={classes.containerBtn}>

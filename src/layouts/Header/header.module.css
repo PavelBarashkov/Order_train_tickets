@@ -13,3 +13,9 @@
 .headerMainSection {
   margin-top: 253px;
 }
+
+.successPage {
+  background: url('@assets//header/Mask Group (2).png'), rgba(155, 105, 9, 1);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

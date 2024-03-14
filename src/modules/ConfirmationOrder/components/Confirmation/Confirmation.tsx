@@ -132,7 +132,11 @@ export const Confirmation: React.FC = () => {
           </div>
         </div>
       </div>
-      <button onClick={() => dispatch(order(user))}>dfd</button>
+      <div className={classes.btnContainer}>
+        <button className={classes.btn} onClick={() => dispatch(order(user))}>
+          подтвердить
+        </button>
+      </div>
     </div>
   )
 }

@@ -57,7 +57,7 @@ export const passengerSlice = createSlice({
       const { index, data } = action.payload
       const infoUser = {
         is_adult: data.age === "adult" ? true : false,
-        first_name: data.name,
+        first_name: data.first_name,
         last_name: data.surname,
         patronymic: data.middleName,
         gender: data.sex === "man" ? true : false,
