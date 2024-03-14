@@ -3,7 +3,11 @@ import classes from "./stageBar.module.css"
 import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { TICKET_ROUTE } from "../../../pages"
-import { PASSENGER_ROUTER, PAYMENT_ORDER_ROUTE } from "../../../pages/helpers/const/const"
+import {
+  CONFIRMATION_ORDER_ROUTE,
+  PASSENGER_ROUTER,
+  PAYMENT_ORDER_ROUTE,
+} from "../../../pages/helpers/const/const"
 
 export const StageBar: React.FC = () => {
   const location = useLocation()
@@ -16,12 +20,16 @@ export const StageBar: React.FC = () => {
       case `/${TICKET_ROUTE}`:
         setStage(1)
         break
-        case `/${PASSENGER_ROUTER}`:
+      case `/${PASSENGER_ROUTER}`:
         setStage(2)
         break
-        case `/${PAYMENT_ORDER_ROUTE}`:
-          setStage(3)
-          break
+      case `/${PAYMENT_ORDER_ROUTE}`:
+        setStage(3)
+        break
+      case `/${CONFIRMATION_ORDER_ROUTE}`:
+        setStage(4)
+        console.log(CONFIRMATION_ORDER_ROUTE)
+        break
     }
   }, [location.pathname])
 

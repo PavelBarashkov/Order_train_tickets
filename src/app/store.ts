@@ -1,6 +1,11 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { configureStore } from "@reduxjs/toolkit"
-import { FilterTickets, FormSearchTickets, ListTickets } from "@modules"
+import {
+  ConfirmationOrder,
+  FilterTickets,
+  FormSearchTickets,
+  ListTickets,
+} from "@modules"
 import { trainInfoSlice } from "../modules/TrainInfo"
 import passengerSlice from "../modules/PassengerRegistration/slice/passengerSlice"
 
@@ -10,7 +15,8 @@ export const store = configureStore({
     filterTickets: FilterTickets.filterTicketsSlice.reducer,
     listTickets: ListTickets.listTicketsSlice.reducer,
     trainInfo: trainInfoSlice,
-    passengerRegistration: passengerSlice 
+    passengerRegistration: passengerSlice,
+    payOrder: ConfirmationOrder.paySlice,
   },
 })
 

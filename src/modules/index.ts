@@ -4,5 +4,6 @@ import * as ListTickets from './ListTickets'
 import * as TrainInfo from './TrainInfo'
 import * as PassengerRegistration from "./PassengerRegistration"
 import * as PayForm from "./PayForm"
+import * as ConfirmationOrder from "./ConfirmationOrder"
 
-export { FormSearchTickets, FilterTickets, TrainInfo, ListTickets, PassengerRegistration, PayForm }
+export { FormSearchTickets, FilterTickets, TrainInfo, ListTickets, PassengerRegistration, PayForm, ConfirmationOrder }

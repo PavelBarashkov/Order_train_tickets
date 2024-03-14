@@ -1,15 +1,18 @@
 import type React from "react"
 import { InfoPiceItem } from "../InfoPiceItem"
 import classes from "./infoPricing.module.css"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Svg } from "@assets"
 import { useAppDispatch } from "../../../../../app/hooks"
 import { setTicket } from "../../../../TrainInfo/slice/trainInfoSlice"
 import { TRAIN_INFO_ROUTER } from "@pages"
+import { CONFIRMATION_ORDER_ROUTE } from "../../../../../pages/helpers/const/const"
 
 export const InfoPricing: React.FC<any> = ({ ticket }) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const location = useLocation()
+  const isConfirmation = location.pathname === `/${CONFIRMATION_ORDER_ROUTE}`
   const {
     departure: { available_seats_info },
   } = ticket
@@ -87,12 +90,15 @@ export const InfoPricing: React.FC<any> = ({ ticket }) => {
             {<Svg.Food />}
           </div>
 
-          <button
-            onClick={handleBtn}
-            className={classes.infoPricingBtn}
-          >
-            Выбрать места
-          </button>
+          {isConfirmation ? (
+            <button onClick={handleBtn} className={classes.btnEdit}>
+              Изменить
+            </button>
+          ) : (
+            <button onClick={handleBtn} className={classes.infoPricingBtn}>
+              Выбрать места
+            </button>
+          )}
         </div>
       </div>
     </>
