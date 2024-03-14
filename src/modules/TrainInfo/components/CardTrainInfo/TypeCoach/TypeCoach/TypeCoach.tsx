@@ -27,7 +27,6 @@ export const TypeCoach: React.FC<any> = ({
     setActiveTab(eventKey)
     setClassActive(eventKey)
   }
-
   return (
     <div className={classes.typeCoach}>
       <h3 className={classes.typeCoachTitle}>Тип вагона</h3>
@@ -87,6 +86,8 @@ export const TypeCoach: React.FC<any> = ({
                   return (
                     <TabContentItem
                       item={item}
+                      id_route={ticketInfo._id}
+
                       key={item.coach._id}
                       direction={direction}
                     />
@@ -101,6 +102,8 @@ export const TypeCoach: React.FC<any> = ({
                   return (
                     <TabContentItem
                       item={item}
+                      id_route={ticketInfo._id}
+
                       key={item.coach._id}
                       direction={direction}
                     />
@@ -115,6 +118,8 @@ export const TypeCoach: React.FC<any> = ({
                   return (
                     <TabContentItem
                       item={item}
+                      id_route={ticketInfo._id}
+
                       key={item.coach._id}
                       direction={direction}
                     />
@@ -128,6 +133,7 @@ export const TypeCoach: React.FC<any> = ({
                   return (
                     <TabContentItem
                       item={item}
+                      id_route={ticketInfo._id}
                       key={item.coach._id}
                       direction={direction}
                     />

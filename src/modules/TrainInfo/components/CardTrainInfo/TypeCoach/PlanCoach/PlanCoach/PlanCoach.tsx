@@ -9,6 +9,7 @@ interface IPlanCoachProps {
   type: string
   seats: any
   direction: string
+  id_route: string
 }
 
 export const PlanCoach: React.FC<IPlanCoachProps> = ({
@@ -16,20 +17,21 @@ export const PlanCoach: React.FC<IPlanCoachProps> = ({
   type,
   seats,
   direction,
+  id_route,
 }) => {
   if (type === "fourth") {
-    return <Fourth coach={coach} seats={seats} direction={direction} />
+    return <Fourth coach={coach} seats={seats} direction={direction} id_route={id_route}/>
   }
 
   if (type === "third") {
-    return <Third coach={coach} seats={seats} direction={direction} />
+    return <Third coach={coach} seats={seats} direction={direction} id_route={id_route}/>
   }
 
   if (type === "second") {
-    return <Second coach={coach} seats={seats} direction={direction} />
+    return <Second coach={coach} seats={seats} direction={direction} id_route={id_route}/>
   }
 
   if (type === "first") {
-    return <First coach={coach} seats={seats} direction={direction} />
+    return <First coach={coach} seats={seats} direction={direction} id_route={id_route}/>
   }
 }

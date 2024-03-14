@@ -1,8 +1,7 @@
 import type React from 'react'
 import { Header, PageContainerWithSidBar } from '../../../layouts'
 import { Logo, Navigation } from '../../../components'
-import { FormSearchTickets, PassengerRegistration } from '../../../modules'
-import { Confirmation } from '../../../components/Confirmation/Confirmation'
+import { ConfirmationOrder, FormSearchTickets, PassengerRegistration } from '../../../modules'
 
 export const ConfirmationPage: React.FC = () => {
   return (
@@ -14,7 +13,7 @@ export const ConfirmationPage: React.FC = () => {
       stageBar={<Navigation.StageBar />}
     />
     <PageContainerWithSidBar asideBar={<PassengerRegistration.AsideBar />}>
-      <Confirmation/>
+      <ConfirmationOrder.Confirmation/>
     </PageContainerWithSidBar>
   </>
   )

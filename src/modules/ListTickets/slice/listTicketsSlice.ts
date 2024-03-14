@@ -46,6 +46,9 @@ export const listTicketsSlice = createSlice({
         state.total_count = action.payload.total_count
         state.tickets = action.payload.items
         state.loading = false
+        if (action.payload.error) {
+          state.error = 'Ошибка'
+        }
       })
       .addCase(getTicket.rejected, (state, action) => {
         console.log("Error:", action.payload)

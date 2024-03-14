@@ -2,7 +2,7 @@ import type React from 'react'
 import { Header, PageContainerWithSidBar } from '../../../layouts'
 import { Logo, Navigation } from '../../../components'
 import { FormSearchTickets, PassengerRegistration } from '../../../modules'
-import { PayForm } from '../../../components/PayForm/PayForm'
+import { PayForm } from '@modules'
 
 export const PaymentPage: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ export const PaymentPage: React.FC = () => {
       stageBar={<Navigation.StageBar />}
     />
     <PageContainerWithSidBar asideBar={<PassengerRegistration.AsideBar />}>
-      <PayForm/>
+      <PayForm.PayForm/>
     </PageContainerWithSidBar>
   </>
   )

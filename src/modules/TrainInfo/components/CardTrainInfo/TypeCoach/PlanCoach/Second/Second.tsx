@@ -2,7 +2,7 @@ import type React from "react"
 import classes from "./second.module.css"
 import { Seat } from "../Seat/Seat"
 
-export const Second: React.FC<any> = ({ coach, seats, direction }) => {
+export const Second: React.FC<any> = ({ coach, seats, direction, id_route }) => {
   const planSeats = [
     { number: 1, type: "top", left: "120" },
     { number: 2, type: "top", left: "120" },
@@ -65,6 +65,7 @@ export const Second: React.FC<any> = ({ coach, seats, direction }) => {
             seats[item.number - 1] ? seats[item.number - 1].available : false
           }
           price={item.price}
+          id_route={id_route}
         />
       ))}
     </div>
