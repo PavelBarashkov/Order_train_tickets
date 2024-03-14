@@ -129,7 +129,6 @@ export const trainInfoSlice = createSlice({
     addToTotalCostFrom: (state, action) => {
       const { option } = action.payload
       const sumOption = option === undefined ? 0 : option
-      console.log(option)
       let sum = 0
       state.coachListFrom.selected.seats.forEach((item: any) => {
         sum += item.cost
@@ -144,7 +143,6 @@ export const trainInfoSlice = createSlice({
     addToTotalCostTo: (state, action) => {
       const { option } = action.payload
       const sumOption = option === undefined ? 0 : option
-      console.log(option)
       let sum = 0
       state.coachListTo.selected.seats.forEach((item: any) => {
         sum += item.cost

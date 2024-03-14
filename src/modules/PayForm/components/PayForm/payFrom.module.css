@@ -96,7 +96,7 @@
 
 .pay_form_field_control:checked ~ .pay_form_label_radio::before {
   border-color: #ffa800;
-  background-image: url("../../assets/icons/check.png");
+  background-image: url("../../../../assets/icons/check.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 23px 18px;
@@ -124,4 +124,33 @@
 
 .pay_form_controls_group:last-child {
   border-top: 1px dashed #928f94;
+}
+
+.error {
+  color: red;
+}
+
+.btn {
+  padding: 16px 70px;
+  border-radius: 5px;
+  font-weight: 700;
+  border: 1px solid #ffa800;
+  background-color: #ffa800;
+  color: #ffff;
+}
+
+
+.btn:hover {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.btn:active {
+  background-color: inherit;
+  color: #ffa800;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: end;
+  margin-top: 30px;
 }

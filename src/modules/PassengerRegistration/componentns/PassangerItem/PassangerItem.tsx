@@ -14,7 +14,6 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
   const handleShow = () => {
     setActive(prev => !prev)
   }
-
   return (
     <>
       <Formik
@@ -67,7 +66,7 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
         }}
       >
         {({ errors, touched, values }) => (
-          <Form>
+          <Form>  
             <div className={classes.card}>
               <div
                 className={`${classes.passenger_header} ${active ? classes.active_form : ""}`}
