@@ -14,7 +14,6 @@ export const getTicket = createAsyncThunk(
   "getTickets",
   async (params: string) => {
     const response = await getTickets(params)
-    console.log(response)
     return response.data
   },
 )
@@ -48,7 +47,6 @@ export const listTicketsSlice = createSlice({
         state.tickets = action.payload.items
         state.loading = false
         if (action.payload.error) {
-          console.log('error')
           state.error = 'Ошибка'
         }
       })

@@ -2,6 +2,8 @@ import type React from "react"
 import classes from "./seat.module.css"
 import { useAppDispatch, useAppSelector } from "../../../../../../../app/hooks"
 import {
+  addToTotalCostFrom,
+  addToTotalCostTo,
   setSelectedSeatFrom,
   setSelectedSeatTo,
 } from "../../../../../slice/trainInfoSlice"
@@ -16,7 +18,7 @@ export const Seat: React.FC<any> = ({
   direction,
   seats,
   price,
-  id_route
+  id_route,
 }) => {
   const dispatch = useAppDispatch()
   const { coachListFrom, coachListTo } = useAppSelector(
@@ -51,11 +53,26 @@ export const Seat: React.FC<any> = ({
 
   const handleBtnSeat = () => {
     if (direction === "from") {
-      dispatch(setSelectedSeatFrom({ id: id, number: number, price: price, id_route: id_route }))
+      dispatch(
+        setSelectedSeatFrom({
+          id: id,
+          number: number,
+          price: price,
+          id_route: id_route,
+        }),
+      )
+      dispatch(addToTotalCostFrom({}))
     } else {
-      dispatch(setSelectedSeatTo({ id: id, number: number, price: price, id_route: id_route }))
+      dispatch(
+        setSelectedSeatTo({
+          id: id,
+          number: number,
+          price: price,
+          id_route: id_route,
+        }),
+      )
+      dispatch(addToTotalCostTo({}))
     }
-    console.log(id_route)
   }
 
   return (

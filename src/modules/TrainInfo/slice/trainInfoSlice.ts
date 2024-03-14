@@ -4,22 +4,21 @@ import { getCoachList } from "../API/getCoachList"
 const storedTicket = localStorage.getItem("train_info")
 const ticketFromLocalStorage = storedTicket ? JSON.parse(storedTicket) : {}
 
-const selectedFrom = localStorage.getItem("ticket_from_info")
+const selectedFrom = localStorage.getItem("departure_tickets")
 const selectedFromLocalStorage = selectedFrom
   ? JSON.parse(selectedFrom)
-  : {  seats: [], cost: 0 }
+  : { seats: [], cost: 0, route_direction_id: "" }
 
-const selectedTo = localStorage.getItem("ticket_to_info")
+const selectedTo = localStorage.getItem("arrival_tickets")
 const selectedToLocalStorage = selectedTo
   ? JSON.parse(selectedTo)
   : { seats: [], cost: 0 }
 
 interface Seat {
-  route_direction_id: string
   coach_id: string
   seat_number: string
   cost: number
-  is_child: boolean,
+  is_child: boolean
   include_children_seat: boolean
 }
 
@@ -28,6 +27,7 @@ interface ITrainInfoSlice {
   coachListFrom: {
     list: []
     selected: {
+      route_direction_id: string
       seats: Seat[]
       cost: number
     }
@@ -38,6 +38,7 @@ interface ITrainInfoSlice {
   coachListTo: {
     list: []
     selected: {
+      route_direction_id: string
       seats: Seat[]
       cost: number
     }
@@ -95,13 +96,13 @@ export const trainInfoSlice = createSlice({
       if (existingIndex !== -1) {
         state.coachListFrom.selected.seats.splice(existingIndex, 1)
       } else {
+        state.coachListFrom.selected.route_direction_id = id_route
         state.coachListFrom.selected.seats.push({
-          route_direction_id: id_route,
           coach_id: id,
           seat_number: number,
           cost: price,
           is_child: false,
-          include_children_seat: false
+          include_children_seat: false,
         })
       }
     },
@@ -115,36 +116,54 @@ export const trainInfoSlice = createSlice({
       if (existingIndex !== -1) {
         state.coachListTo.selected.seats.splice(existingIndex, 1)
       } else {
+        state.coachListTo.selected.route_direction_id = id_route
         state.coachListTo.selected.seats.push({
-          route_direction_id: id_route,
           coach_id: id,
           seat_number: number,
           cost: price,
           is_child: false,
-          include_children_seat: false
+          include_children_seat: false,
         })
       }
     },
     addToTotalCostFrom: (state, action) => {
-      state.coachListFrom.selected.cost = action.payload
+      const { option } = action.payload
+      const sumOption = option === undefined ? 0 : option
+      console.log(option)
+      let sum = 0
+      state.coachListFrom.selected.seats.forEach((item: any) => {
+        sum += item.cost
+        return sum
+      })
+      state.coachListFrom.selected.cost = sum + sumOption
       localStorage.setItem(
-        "ticket_from_info",
+        "departure_tickets",
         JSON.stringify(state.coachListFrom.selected),
       )
     },
     addToTotalCostTo: (state, action) => {
-      state.coachListTo.selected.cost = action.payload
+      const { option } = action.payload
+      const sumOption = option === undefined ? 0 : option
+      console.log(option)
+      let sum = 0
+      state.coachListTo.selected.seats.forEach((item: any) => {
+        sum += item.cost
+        return sum
+      })
+      state.coachListTo.selected.cost = sum + sumOption
       localStorage.setItem(
-        "ticket_to_info",
+        "arrival_tickets",
         JSON.stringify(state.coachListTo.selected),
       )
     },
     clearSelected: state => {
       state.coachListFrom.selected = {
+        route_direction_id: "",
         seats: [],
         cost: 0,
       }
       state.coachListTo.selected = {
+        route_direction_id: "",
         seats: [],
         cost: 0,
       }
