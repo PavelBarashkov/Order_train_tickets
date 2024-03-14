@@ -1,5 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
+const ticketsDepartureLocal = localStorage.getItem("departure_tickets")
+const ticketsDeparture = ticketsDepartureLocal
+  ? JSON.parse(ticketsDepartureLocal)
+  : {}
+
+const ticketsArrivalLocal = localStorage.getItem("arrival_tickets")
+const ticketsArrival = ticketsArrivalLocal
+  ? JSON.parse(ticketsArrivalLocal)
+  : undefined
+
 export interface PersonInfo {
   is_adult: boolean
   first_name: string
@@ -31,14 +41,8 @@ interface IPassengerSlice {
 }
 
 const initialState: IPassengerSlice = {
-  departure: {
-    route_direction_id: "",
-    seats: [],
-  },
-  arrival: {
-    route_direction_id: "",
-    seats: [],
-  },
+  departure: ticketsDeparture,
+  arrival: ticketsArrival
 }
 
 export const passengerSlice = createSlice({
@@ -46,35 +50,29 @@ export const passengerSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      const users = action.payload
-
-      for (const user of users) {
-        if (user.arrival) {
-          state.arrival.route_direction_id = user.arrival.route_direction_id
-          state.arrival.seats.push(user.arrival)
-        }
-        if (user.departure) {
-          state.departure.seats.push(user.departure)
-          state.departure.route_direction_id = user.departure.route_direction_id
-        }
-      }
+      state.departure = action.payload
     },
     updateUser: (state, action) => {
-        console.log(action.payload)
-        const {index, data} = action.payload
-        const infoUser = {
-            is_adult: data.age === 'adult' ? true : false,
-            first_name: data.name,
-            last_name: data.surname,
-            patronymic: data.middleName,
-            gender: data.sex === 'man' ? true : false,
-            birthday: data.dateOfBirth,
-            document_type: data.documentType,
-            document_data: data.numberDocument 
-        }
-        state.departure.seats[index].person_info =  infoUser
-        state.arrival.seats[index].person_info =  infoUser
-    }
+      console.log(action.payload)
+      const { index, data } = action.payload
+      const infoUser = {
+        is_adult: data.age === "adult" ? true : false,
+        first_name: data.name,
+        last_name: data.surname,
+        patronymic: data.middleName,
+        gender: data.sex === "man" ? true : false,
+        birthday: data.dateOfBirth,
+        document_type: data.documentType,
+        document_data: data.numberDocument,
+      }
+      state.departure.seats[index].person_info = infoUser
+      localStorage.setItem('departure_tickets', JSON.stringify(state.departure))
+      if(ticketsArrival) {
+        state.arrival.seats[index].person_info = infoUser
+      localStorage.setItem('arrival_tickets', JSON.stringify(state.arrival))
+
+      }
+    },
   },
 })
 

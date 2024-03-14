@@ -1,7 +1,7 @@
 import type React from "react"
 import classes from "./passangerItem.module.css"
 import { useState } from "react"
-import { ErrorMessage, Field, Form, Formik, validateYupSchema } from "formik"
+import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
 import { useAppDispatch } from "../../../../app/hooks"
 import { updateUser } from "../../slice/passengerSlice"
@@ -35,7 +35,7 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
           surname: Yup.string()
             .min(2, "Некорректная фамилия")
             .required("Заполните фамилию"),
-          name: Yup.string()
+          first_name: Yup.string()
             .min(2, "Некорректное имя")
             .required("Заполните имя"),
           middleName: Yup.string()
@@ -63,8 +63,7 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
         })}
         onSubmit={values => {
           setPassenger(active)
-          dispatch(updateUser({index, data: values}))
-
+          dispatch(updateUser({ index, data: values }))
         }}
       >
         {({ errors, touched, values }) => (
@@ -130,10 +129,10 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
                       <Field
                         className={`${classes.passengerForm_field} ${classes.passengerForm_field_name}`}
                         as="input"
-                        name="name"
+                        name="first_name"
                       />
                       <div className={classes.error}>
-                        <ErrorMessage name="name" />
+                        <ErrorMessage name="first_name" />
                       </div>
                     </label>
 
@@ -264,9 +263,7 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
                       </label>
                     )}
 
-                    <label
-                      className={classes.passengerForm_label}
-                    >
+                    <label className={classes.passengerForm_label}>
                       Номер
                       <Field
                         className={`${classes.passengerForm_field} ${classes.passengerForm_field__document}`}
@@ -280,7 +277,7 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
                 </div>
 
                 <div
-                  className={`${classes.passengerForm_footer} ${passenger ? classes.passengerForm_section_done : ""} ${errors.numberDocument ? classes.warning : ""}`}
+                  className={`${classes.passengerForm_footer} ${passenger ? classes.passengerForm_section_done : ""} ${errors.numberDocument && touched.numberDocument ? classes.warning : ""}`}
                 >
                   {passenger && (
                     <div className={classes.passengerForm_massage}>
@@ -289,7 +286,7 @@ export const PassangerItem: React.FC<any> = ({ numberPassenger, index }) => {
                     </div>
                   )}
 
-                  {errors.numberDocument ? (
+                  {errors.numberDocument && touched.numberDocument ? (
                     <div className={classes.passengerForm_massage}>
                       <span className={classes.massage_warning_img} />
                       <span className={classes.massage_warning}>

@@ -12,6 +12,7 @@ import {
 import { CardTrainInfo } from "../CardTrainInfo"
 import { useLocation, useNavigate } from "react-router-dom"
 import { PASSENGER_ROUTER } from "../../../../pages/helpers/const/const"
+import { setUser } from "../../../PassengerRegistration/slice/passengerSlice"
 
 export const TrainInfo: React.FC = () => {
   // TODO Сделать компонет билета, прнимает (направление, инфу о билете, инфу овогонах)
@@ -63,6 +64,7 @@ export const TrainInfo: React.FC = () => {
         <button
           onClick={() => {
             navigate(`/${PASSENGER_ROUTER}`)
+            dispatch(setUser(coachListFrom.selected))
             localStorage.setItem(
               "totalCount",
               JSON.stringify(
